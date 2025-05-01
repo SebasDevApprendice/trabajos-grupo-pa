@@ -196,7 +196,6 @@ h2 {
     box-shadow: #3a0814 0px 0px 10px;
     animation: carrusel 9s linear infinite;
     overflow: hidden;
-   
 }
 
 
@@ -244,7 +243,7 @@ h2 {
         text-align: center;
         font-size: 48px;
         background-color:bisque;
-        box-shadow: #3a0814 3px 3px 10px;
+        box-shadow: #3a0814 3px 3px 10p;
     }
 }
 
