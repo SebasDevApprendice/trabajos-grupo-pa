@@ -12,7 +12,7 @@ public class NavPagController {
     }
 
     @RequestMapping("/login")
-    public String logins(){
+    public String login(){
         return "login";
     }
 
