@@ -199,6 +199,8 @@ button:hover {
     border: 1px solid #ccc;
     width: 100%;
     max-width: 200px;
+    text-decoration: none;
+    
 }
 /* === BOTONES DE PRODUCTO === */
 .producto-botones {
