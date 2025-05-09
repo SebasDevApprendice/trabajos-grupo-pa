@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import jakarta.persistence.*;
 
 @Controller
 public class NavPagController {
@@ -35,4 +37,5 @@ public class NavPagController {
     public String vistaAdmin(){
         return "vistaAdmin";
     }
+    
 }
