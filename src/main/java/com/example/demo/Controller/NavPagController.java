@@ -1,9 +1,8 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import jakarta.persistence.*;
 
 @Controller
 public class NavPagController {
