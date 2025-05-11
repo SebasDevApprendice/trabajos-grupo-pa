@@ -16,7 +16,7 @@ public class CarritoProductoModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_codigo", nullable = false)
-    private productoModel producto;
+    private ProductoModel producto;
 
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
@@ -24,11 +24,15 @@ public class CarritoProductoModel {
     public CarritoProductoModel() {
     }
 
-    public CarritoProductoModel(CarritoModel carrito, productoModel producto, int cantidad) {
+    
+
+    public CarritoProductoModel(CarritoModel carrito, ProductoModel producto, int cantidad) {
         this.carrito = carrito;
         this.producto = producto;
         this.cantidad = cantidad;
     }
+
+
 
     public Long getId() {
         return id;
@@ -46,11 +50,11 @@ public class CarritoProductoModel {
         this.carrito = carrito;
     }
 
-    public productoModel getProducto() {
+    public ProductoModel getProducto() {
         return producto;
     }
 
-    public void setProducto(productoModel producto) {
+    public void setProducto(ProductoModel producto) {
         this.producto = producto;
     }
 

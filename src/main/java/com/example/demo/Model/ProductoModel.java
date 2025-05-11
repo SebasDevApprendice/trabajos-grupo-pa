@@ -16,7 +16,7 @@ public class ProductoModel {
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
     @Column(name = "precio", nullable = false)
-    private int precio;
+    private double precio;
     @Column(name = "talla", nullable = false)
     private String talla;
     @Column(name = "categoria", nullable = false)
@@ -25,7 +25,7 @@ public class ProductoModel {
     public ProductoModel() {
     }
 
-    public ProductoModel(int codigo, String nombre, int cantidad, int precio, String talla, String categoria) {
+    public ProductoModel(long codigo, String nombre, int cantidad, double precio, String talla, String categoria) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -38,7 +38,7 @@ public class ProductoModel {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
@@ -62,7 +62,7 @@ public class ProductoModel {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 

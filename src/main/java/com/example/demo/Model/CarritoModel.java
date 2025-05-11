@@ -9,7 +9,7 @@ import java.util.List;
 public class CarritoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idCarrito;
+    private long id;
     @Column(name = "nombre", nullable = false)
     private float costoCarrito;
     @OneToOne(mappedBy = "carrito")
@@ -20,19 +20,18 @@ public class CarritoModel {
     public CarritoModel() {
     }
 
-    public CarritoModel(long idCarrito, float costoCarrito, UsuarioModel usuario,
-            List<CarritoProductoModel> carritoProductos) {
-        this.idCarrito = idCarrito;
+    public CarritoModel(long id, float costoCarrito, UsuarioModel usuario, List<CarritoProductoModel> carritoProductos) {
+        this.id = id;
         this.costoCarrito = costoCarrito;
         this.usuario = usuario;
         this.carritoProductos = carritoProductos;
     }
 
-    public long getIdCarrito() {
-        return idCarrito;
+    public long getid() {
+        return id;
     }
-    public void setIdCarrito(long idCarrito) {
-        this.idCarrito = idCarrito;
+    public void setid(long id) {
+        this.id = id;
     }
     public float getCostoCarrito() {
         return costoCarrito;
