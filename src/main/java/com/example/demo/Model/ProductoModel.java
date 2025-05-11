@@ -5,27 +5,31 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "productos")
-
 public class ProductoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long codigo;
+    private Long codigo;
+    
     @Column(name = "nombre", nullable = false)
     private String nombre;
+    
     @Column(name = "cantidad", nullable = false)
-    private int cantidad;
+    private Integer cantidad;
+    
     @Column(name = "precio", nullable = false)
-    private double precio;
+    private Double precio;
+    
     @Column(name = "talla", nullable = false)
     private String talla;
+    
     @Column(name = "categoria", nullable = false)
     private String categoria;
 
     public ProductoModel() {
     }
 
-    public ProductoModel(long codigo, String nombre, int cantidad, double precio, String talla, String categoria) {
+    public ProductoModel(Long codigo, String nombre, Integer cantidad, Double precio, String talla, String categoria) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -34,56 +38,46 @@ public class ProductoModel {
         this.categoria = categoria;
     }
 
-    public long getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
-
-    public void setCodigo(long codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
-
+    
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getPrecio() {
+    
+    public Double getPrecio() {
         return precio;
     }
-
-    public void setPrecio(double precio) {
+    public void setPrecio(Double precio) {
         this.precio = precio;
     }
-
-    public String getTalla() {
-        return talla;
+    
+    public Integer getCantidad() {
+        return cantidad;
     }
-
-    public void setTalla(String talla) {
-        this.talla = talla;
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
-
+    
     public String getCategoria() {
         return categoria;
     }
-
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-
-    @Override
-    public String toString() {
-        return "productoModel{" + "codigo=" + codigo + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", talla=" + talla + ", categoria=" + categoria + '}';
+    
+    public String getTalla() {
+        return talla;
+    }
+    public void setTalla(String talla) {
+        this.talla = talla;
     }
 }
+

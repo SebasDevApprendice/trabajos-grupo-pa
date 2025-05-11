@@ -10,36 +10,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/producto")
 public class ProductoController {
 
     @Autowired
     private ProductoRepository productoRepository;
 
-    @GetMapping("/inventario")
-    public String mostrarInventario(Model model) {
-        List<ProductoModel> productos = productoRepository.findAll();
-        model.addAttribute("productos", productos);
-        return "inventario"; 
-    }
-
-    @GetMapping("/agregar")
-    public String mostrarFormulario(Model model) {
-        model.addAttribute("producto", new ProductoModel()); 
-        return "agregarProducto"; 
-    }
+    @GetMapping("/formulario")
+public String mostrarFormularioYListado(Model model) {
+    model.addAttribute("producto", new ProductoModel());
+    List<ProductoModel> productos = productoRepository.findAll();
+    model.addAttribute("productos", productos);
+    return "formulario";}
 
     @PostMapping("/agregar")
     public String agregarProducto(@ModelAttribute ProductoModel producto) {
-        productoRepository.save(producto); 
-        return "redirect:/producto/inventario";
-    }
+        productoRepository.save(producto);
+        return "redirect:/formulario";}
 
-    @GetMapping("/editar/{id}")
+    @GetMapping("/formularioEdit/{id}")
     public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
         ProductoModel producto = productoRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
         model.addAttribute("producto", producto);
-        return "editarProducto";}
+        return "formularioEdit";}
     
 @PostMapping("/editar")
     public String editarProducto(@ModelAttribute ProductoModel producto) {
@@ -50,14 +42,14 @@ public class ProductoController {
         productoExistente.setCantidad(producto.getCantidad());
         productoExistente.setTalla(producto.getTalla());
         productoRepository.save(productoExistente);
-        return "redirect:/producto/inventario";
+        return "redirect:/formulario";
     }
 
 
     @PostMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Long id) {
         productoRepository.deleteById(id);
-        return "redirect:/producto/inventario";
+        return "redirect:/formulario";
     }
 
 }

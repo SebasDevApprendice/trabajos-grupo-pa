@@ -36,4 +36,9 @@ public class NavPagController {
         return "vistaAdmin";
     }
 
+    @RequestMapping("/formulario")
+    public String formulario() {
+        return "formulario";
+    }
+
 }
