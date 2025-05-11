@@ -1,86 +1,320 @@
-body{
-    margin: 0;
-    background-color: #1d0008;
-    font-family: Arial, Helvetica, sans-serif;
+* {
+    box-sizing: border-box;
 }
 
-header{
-    background-color: #FFC7D6;
-    height: 10%;
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: linear-gradient(to top, #f2637b, #ecd4d4);
+    scroll-behavior: smooth;
+}
+
+div,
+ul,
+nav,
+header,
+footer,
+a,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: linear-gradient(to top, #f2637b, #eb9c9c);
+    height: 80px;
     display: flex;
     justify-content: space-between;
-    padding: 5px;
-    
+    align-items: center;
+    container-type: inline-size;
+    container-name: header;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.3);
 }
 
-.imgLogo{
-    height:50px;
-    width: 50px;
-}
 
-.imgPerfil{
-    height:50px;
-    width: 50px;
-}
 
-.logo{
-    gap: 5px;
-    display: flex;
-}
-
-.infoUsuario{
-    gap: 5px;
-    display: flex;
-}
-
-.contenedor{
-    display: grid;
-    grid-template-columns: 50px 1fr;
+.header_nav {
+    display: none;
+    background-color: #ffffff;
+    position: absolute;
     height: 100vh;
-    gap: 20px;
+    width: 100vw;
+    top: 0;
+    z-index: -1;
 }
 
-nav{
-    width: 30px;
-    height: auto;
-    background-color: #FFFFFF;
-    padding: 10px;
-    
+
+.nav-ul {
+    display: flex;
+    flex-direction: column;
+    height: 20px;
+    margin: auto;
+    justify-content: space-evenly;
+    z-index: 1;
+
 
 }
 
-.iconLateral{
-    height: 30px;
-    width: 30px;
-    margin-top: 10px;    
+.nav-item {
+    list-style: none;
 }
 
-.iconRallitas{
-    height: 30px;
-    width: 30px;
+.nav-item a {
+    color: #3a0814;
+}
+
+.logo-img {
+    max-width: 100%;
+    width: 64px;
+    margin: 10px 20px;
+}
+
+/* Contenedor general */
+.contenedor {
+    display: flex;
+    min-height: calc(100vh - 80px);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 150px;
+    background: linear-gradient(to bottom, #ffffff, #f48fb1);
+    min-height: calc(100vh - 80px);
+    /* resta la altura del header si lo tienes */
+    padding-top: 20px;
+}
+
+.sidebar-list {
+    list-style: none;
+}
+
+.sidebar-item {
     margin-bottom: 15px;
 }
 
-main{
-    margin: 20px 20px 20px 0;
+.sidebar-item a {
+    display: flex;
+    align-items: center;
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.sidebar-item a i {
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.sidebar-item a span {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.sidebar-item a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dashboard {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    overflow-y: auto;
+    grid-template-columns: repeat(2, minmax(140px, 0.7fr));
+    gap: 30px;
+    padding: 40px;
+    flex: 1;
 }
 
-.estadisticas{
-    
-    background-color: #FFFFFF;
-    border-radius: 30px;
-    padding: 50px;
+.card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-left: 10px solid #f48fb1;
+    transition: transform 0.2s;
 }
 
-h2{
-    text-align: center;
+.card:hover {
+    transform: translateY(-5px);
 }
 
-.textoCuadros{
-    text-align: center;
+.card-icon {
+    font-size: 30px;
+    margin-right: 20px;
+    color: #f48fb1;
 }
 
+.card-content h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.card-content p {
+    margin: 5px 0 0;
+    font-size: 16px;
+    color: #666;
+}
+
+/* Colores distintos por tipo */
+.card.ingresos {
+    border-left-color: #81c784;
+}
+
+/* verde */
+.card.egresos {
+    border-left-color: #e57373;
+}
+
+/* rojo */
+.card.metas {
+    border-left-color: #64b5f6;
+}
+
+/* azul */
+.card.usuarios {
+    border-left-color: #ba68c8;
+}
+
+/* morado */
+
+/*---------- MEDIA QUERIES(HEADER) ----------*/
+@container header (min-width: 600px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to right, #ff758c, #ff7eb3);
+
+    }
+
+    .header_nav {
+        display: block;
+        background: transparent !important;
+        position: static;
+        height: auto;
+        width: auto;
+        justify-content: space-evenly;
+        flex-direction: row;
+        z-index: 1;
+        background: linear-gradient(to top, #f2637b, #eb9c9c);
+
+    }
+
+    .nav-ul {
+        flex-direction: row;
+        background: none;
+        align-items: center;
+        gap: 30px;
+        padding-right: 40px;
+        font-size: 18px;
+        height: auto;
+        width: auto;
+
+    }
+
+    .nav-item {
+        list-style: none;
+
+    }
+
+
+    .nav-item a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 8px 20px;
+        border-radius: 5px;
+        transition: all 0.3s ease, transform 0.2s ease;
+    }
+
+
+    .nav-item a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+        border-radius: 5px;
+    }
+
+    .header_open-nav-button {
+        display: none;
+    }
+}
+
+/*---------- USUARIOS CRUD ----------*/
+.formulario,
+.tabla-productos {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.formulario h2,
+.tabla-productos h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 500;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+form button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #f48fb1;
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #ec407a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f8bbd0;
+    color: #333;
+}
+
+table td button {
+    background: #e57373;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+table td a {
+    margin-right: 10px;
+    color: #1976d2;
+    text-decoration: none;
+}
