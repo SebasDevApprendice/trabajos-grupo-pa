@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+    background-color: #1d0008;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    background-color: #FFC7D6;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    
+}
+
+.imgLogo{
+    height:50px;
+    width: 50px;
+}
+
+.imgPerfil{
+    height:50px;
+    width: 50px;
+}
+
+.logo{
+    gap: 5px;
+    display: flex;
+}
+
+.infoUsuario{
+    gap: 5px;
+    display: flex;
+}
+
+.contenedor{
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    height: 100vh;
+    gap: 20px;
+}
+
+nav{
+    width: 30px;
+    height: auto;
+    background-color: #FFFFFF;
+    padding: 10px;
+    
+
+}
+
+.iconLateral{
+    height: 30px;
+    width: 30px;
+    margin-top: 10px;    
+}
+
+.iconRallitas{
+    height: 30px;
+    width: 30px;
+    margin-bottom: 15px;
+}
+
+main{
+    margin: 20px 20px 20px 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.estadisticas{
+    
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    padding: 50px;
+}
+
+h2{
+    text-align: center;
+}
+
+.textoCuadros{
+    text-align: center;
+}
+
