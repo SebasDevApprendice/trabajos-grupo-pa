@@ -4,11 +4,12 @@
     box-sizing: border-box;
 }
 
-body{
+body,html{
     margin: 0;
+    height: 100%;
     font-family: sans-serif;
     background: linear-gradient(to top, #f2637b, #ecd4d4);
-    scroll-behavior: smooth;
+
 }
 
 div, ul ,nav, header, footer, a, li {
@@ -130,46 +131,58 @@ header{
 }
 
 /*---------- LOGIN SECTION ----------*/
+/* Reset general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+/* LOGIN AREA */
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    height: 80vh;
+    height: 100vh;
 }
 
+
 .form_area {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    padding: 20px;
+    margin-top: 90px;
+    margin-bottom: 115px;
     background-color: #EDDCD9;
-    height: auto;
-    width: auto;
     border: 2px solid #264143;
     border-radius: 20px;
     box-shadow: 3px 4px 0px 1px #ff6e63;
 }
 
+
 .title {
     color: #264143;
     font-weight: 900;
     font-size: 1.5em;
-    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .sub_title {
     font-weight: 600;
-    margin: 5px 0;
+    margin-bottom: 20px;
 }
 
 .form_group {
     display: flex;
     flex-direction: column;
-    align-items: baseline;
-    margin: 10px;
+    align-items: flex-start;
+    margin: 10px 0;
 }
 
 .form_style {
@@ -188,27 +201,34 @@ header{
     box-shadow: 1px 2px 0px 0px #ff6e63;
 }
 
+
 .btn {
     padding: 15px;
-    margin: 25px 0px;
+    margin-top: 20px;
     width: 290px;
     font-size: 15px;
     background: #f181b9;
     border-radius: 10px;
     font-weight: 800;
     box-shadow: 3px 3px 0px 0px #ff6e63;
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
-    opacity: .9;
+    opacity: 0.9;
 }
+
 
 .link {
     font-weight: 800;
     color: #264143;
     padding: 5px;
+    text-decoration: none;
 }
-.logo-img{
+
+
+.logo-img {
     max-width: 100%;
     width: 64px;
     margin: 10px 20px;

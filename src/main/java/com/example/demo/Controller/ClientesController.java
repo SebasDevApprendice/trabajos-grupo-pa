@@ -68,6 +68,6 @@ public class ClientesController extends SessionController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
     session.invalidate();
-    return "redirect:/Menu_Inicio"; 
+    return "redirect:/Menu_Inici"; 
 }
 }
