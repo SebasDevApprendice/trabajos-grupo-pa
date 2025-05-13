@@ -32,7 +32,7 @@ public class ClientesController {
         ClientesModel clienteEnDB = clienteRepository.findByEmail(cliente.getEmail());
         if (clienteEnDB != null && clienteEnDB.getContrasena().equals(cliente.getContrasena())) {
             model.addAttribute("nombreCliente", clienteEnDB.getNombre());
-            return "Menu_Inicio";
+            return "Menu_cliente";
         } else {
             model.addAttribute("error", "Credenciales incorrectas");
             model.addAttribute("cliente", new ClientesModel()); 

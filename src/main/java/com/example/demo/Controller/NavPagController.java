@@ -35,6 +35,10 @@ public class NavPagController {
     public String vistaAdmin() {
         return "vistaAdmin";
     }
+        @RequestMapping("/Menu_cliente")
+    public String Menu_cliente() {
+        return "Menu_cliente";
+    }
 
     @RequestMapping("/formularioRopa")
     public String formulario() {
