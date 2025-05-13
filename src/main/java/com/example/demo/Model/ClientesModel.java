@@ -1,5 +1,7 @@
 package com.example.demo.Model;
 
+import java.sql.Date;
+
 import jakarta.persistence.*;
 
 
@@ -8,12 +10,12 @@ import jakarta.persistence.*;
 
 public class ClientesModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private long Id;
     @Column(name = "nombre", nullable = false)
     private String nombre;
     @Column(name = "fecha_nac", nullable = false)
-    private String fecha_nac;
+    private Date fecha_nac;
     @Column(name = "telefono", nullable = false)
     private String telefono;
     @Column(name = "email", nullable = false)
@@ -27,7 +29,7 @@ public class ClientesModel {
     public ClientesModel() {
     }
 
-    public ClientesModel(int Id, String nombre, String fecha_nac, String telefono, String email, String contrasena, String direccion) {
+    public ClientesModel(int Id, String nombre, Date fecha_nac, String telefono, String email, String contrasena, String direccion) {
         this.Id = Id;
         this.nombre = nombre;
         this.fecha_nac = fecha_nac;
@@ -53,11 +55,11 @@ public class ClientesModel {
         this.nombre = nombre;
     }
 
-    public String getFecha_nac() {
+    public Date getFecha_nac() {
         return fecha_nac;
     }
 
-    public void setFecha_nac(String fecha_nac) {
+    public void setFecha_nac(Date fecha_nac) {
         this.fecha_nac = fecha_nac;
     }
 

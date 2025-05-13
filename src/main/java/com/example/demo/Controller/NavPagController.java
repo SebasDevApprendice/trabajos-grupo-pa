@@ -10,6 +10,11 @@ public class NavPagController {
     public String index() {
         return "index";
     }
+        @RequestMapping("/registroCl")
+    public String registroCl() {
+        return "registroCl";
+    }
+
 
     @RequestMapping("/login")
     public String login() {
@@ -19,11 +24,6 @@ public class NavPagController {
     @RequestMapping("/Menu_Inicio")
     public String Menu_Inicio() {
         return "Menu_Inicio";
-    }
-
-    @RequestMapping("/registro")
-    public String registro() {
-        return "registro";
     }
 
     @RequestMapping("/carrito")
