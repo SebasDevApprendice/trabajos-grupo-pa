@@ -15,41 +15,40 @@ public class ProductoController {
     @Autowired
     private ProductoRepository productoRepository;
 
-    @GetMapping("/formulario")
-public String mostrarFormularioYListado(Model model) {
-    model.addAttribute("producto", new ProductoModel());
+    @GetMapping("/formularioRopa")
+    public String mostrarFormularioYListado(@RequestParam(required = false) Long codigo, Model model) {
+    ProductoModel producto = (codigo != null) 
+        ? productoRepository.findById(codigo).orElse(new ProductoModel())
+        : new ProductoModel();
+
+    model.addAttribute("producto", producto);
     List<ProductoModel> productos = productoRepository.findAll();
     model.addAttribute("productos", productos);
-    return "formulario";}
+    return "formularioRopa";
+    }
 
     @PostMapping("/agregar")
     public String agregarProducto(@ModelAttribute ProductoModel producto) {
         productoRepository.save(producto);
-        return "redirect:/formulario";}
+        return "redirect:/formularioRopa";}
 
     @GetMapping("/formularioEdit/{id}")
     public String mostrarFormularioEdicion(@PathVariable Long id, Model model) {
         ProductoModel producto = productoRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
         model.addAttribute("producto", producto);
         return "formularioEdit";}
-    
+
 @PostMapping("/editar")
-    public String editarProducto(@ModelAttribute ProductoModel producto) {
-        ProductoModel productoExistente = productoRepository.findById(producto.getCodigo()).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-        productoExistente.setNombre(producto.getNombre());
-        productoExistente.setPrecio(producto.getPrecio());
-        productoExistente.setCategoria(producto.getCategoria());
-        productoExistente.setCantidad(producto.getCantidad());
-        productoExistente.setTalla(producto.getTalla());
-        productoRepository.save(productoExistente);
-        return "redirect:/formulario";
+    public String editarUsuario(@ModelAttribute ProductoModel producto) {
+        productoRepository.save(producto);
+        return "redirect:/formularioRopa";
     }
 
 
     @PostMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Long id) {
         productoRepository.deleteById(id);
-        return "redirect:/formulario";
+        return "redirect:/formularioRopa";
     }
 
 }

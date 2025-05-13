@@ -1,41 +1,40 @@
 package com.example.demo.Model;
 
-import java.sql.Date;
-
 import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "clientes")
 
-public class UsuarioModel {
+public class ClientesModel {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     @Column(name = "nombre", nullable = false)
     private String nombre;
     @Column(name = "fecha_nac", nullable = false)
-    private Date fecha_nac;
+    private String fecha_nac;
+    @Column(name = "telefono", nullable = false)
+    private String telefono;
     @Column(name = "email", nullable = false)
     private String email;
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
-    @Column(name = "usrTipo", nullable = false)
-    private String usrTipo;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "carrito_id", referencedColumnName = "id")
-    private CarritoModel carrito;
+    @Column(name = "direccion", nullable = false)
+    private String direccion;
+    
 
-    public UsuarioModel() {
+    public ClientesModel() {
     }
 
-    public UsuarioModel(int Id, String nombre, Date fecha_nac, String email, String contrasena, String usrTipo) {
+    public ClientesModel(int Id, String nombre, String fecha_nac, String telefono, String email, String contrasena, String direccion) {
         this.Id = Id;
         this.nombre = nombre;
         this.fecha_nac = fecha_nac;
+        this.telefono = telefono;
         this.email = email;
         this.contrasena = contrasena;
-        this.usrTipo = usrTipo;
+        this.direccion = direccion;
     }
 
     public long getId() {
@@ -54,12 +53,20 @@ public class UsuarioModel {
         this.nombre = nombre;
     }
 
-    public Date getFecha_nac() {
+    public String getFecha_nac() {
         return fecha_nac;
     }
 
-    public void setFecha_nac(Date fecha_nac) {
+    public void setFecha_nac(String fecha_nac) {
         this.fecha_nac = fecha_nac;
+    }
+
+    public String getTelefono(){
+        return telefono;
+    }
+
+    public void setTelefono(String telefono){
+        this.telefono = telefono;
     }
 
     public String getEmail() {
@@ -78,20 +85,12 @@ public class UsuarioModel {
         this.contrasena = contrasena;
     }
 
-    public String getUsrTipo() {
-        return usrTipo;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setUsrTipo(String usrTipo) {
-        this.usrTipo = usrTipo;
-    }
-
-    public CarritoModel getCarrito() {
-        return carrito;
-    }
-
-    public void setCarrito(CarritoModel carrito) {
-        this.carrito = carrito;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
 }

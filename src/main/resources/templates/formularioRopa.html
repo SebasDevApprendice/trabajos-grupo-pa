@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administrar Productos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/ImgIndex/LogoEbisu.png" alt="Logo" class="logo-img" />
+        </div>
+        <nav class="header_nav">
+            <ul class="nav-ul">
+                <li class="nav-item"><a href="/Menu_Inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li class="nav-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
+                <li class="nav-item"><a href="/vistaAdmin"><i class="fa-solid fa-cart-shopping"></i> Administrar</a>
+                </li>
+                <li class="nav-item"><a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="contenedor">
+        <aside class="sidebar">
+            <ul class="sidebar-list">
+                <li class="sidebar-item"><a href="/vistaAdmin"><i class="fa-solid fa-chart-pie"></i>
+                        <span>Dashboard</span></a></li>
+                <li class="sidebar-item"><a href="/formularioUsuarios"><i class="fa-solid fa-users"></i>
+                        <span>Usuarios</span></a></li>
+                <li class="sidebar-item"><a href="/formularioRopa"><i class="fa-solid fa-shirt"></i> <span>Ropa</span></a></li>
+                <li class="sidebar-item"><a href="/finanzas"><i class="fa-solid fa-coins"></i> <span>Finanzas</span></a>
+                </li>
+                <li class="sidebar-item"><a href="/pedidos"><i class="fa-solid fa-receipt"></i> <span>Pedidos</span></a>
+                </li>
+                <li class="sidebar-item"><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Salir</span></a></li>
+            </ul>
+        </aside>
+
+        <main class="dashboard">
+
+            <section class="formulario">
+                <h2>Agregar Producto</h2>
+                <form th:action="${producto.codigo != null} ? @{/editar} : @{/agregar}" th:object="${producto}" method="post">
+                    <input type="hidden" th:field="*{codigo}" />
+
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" th:field="*{nombre}" required />
+
+                    <label for="precio">Precio:</label>
+                    <input type="number" id="precio" th:field="*{precio}" required />
+
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" th:field="*{cantidad}" required />
+
+                    <label for="categoria">Categoría:</label>
+                    <input type="text" id="categoria" th:field="*{categoria}" required />
+
+                    <label for="talla">Talla:</label>
+                    <input type="text" id="talla" th:field="*{talla}" required />
+
+                    <button type="submit">Agregar Producto</button>
+                </form>
+            </section>
+
+            <section class="tabla-productos">
+                <h2>Productos en Stock</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Categoría</th>
+                            <th>Cantidad</th>
+                            <th>Talla</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="producto : ${productos}">
+                            <td th:text="${producto.nombre}">Nombre</td>
+                            <td th:text="${producto.precio}">Precio</td>
+                            <td th:text="${producto.categoria}">Categoría</td>
+                            <td th:text="${producto.cantidad}">Cantidad</td>
+                            <td th:text="${producto.talla}">Talla</td>
+                            <td>
+                                <a th:href="@{'/formularioRopa?codigo=' + ${producto.codigo}}">Editar</a>
+                                <form th:action="@{'/eliminar/' + ${producto.codigo}}" method="post"
+                                    style="display:inline;">
+                                    <button type="submit">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>
