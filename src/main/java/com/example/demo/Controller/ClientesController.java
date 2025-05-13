@@ -32,11 +32,17 @@ public class ClientesController {
         ClientesModel clienteEnDB = clienteRepository.findByEmail(cliente.getEmail());
         if (clienteEnDB != null && clienteEnDB.getContrasena().equals(cliente.getContrasena())) {
             model.addAttribute("nombreCliente", clienteEnDB.getNombre());
-            return "clienteBienvenido";
+            return "Menu_Inicio";
         } else {
             model.addAttribute("error", "Credenciales incorrectas");
             model.addAttribute("cliente", new ClientesModel()); 
             return "login";
         }
     }
+
+    @GetMapping("/registroCl")
+    public String mostrarFormularioRegistro(Model model) {
+    model.addAttribute("cliente", new ClientesModel());
+    return "registroCl";
+}
 }
