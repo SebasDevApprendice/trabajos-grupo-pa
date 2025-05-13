@@ -7,7 +7,7 @@
 body{
     margin: 0;
     font-family: sans-serif;
-    background: linear-gradient(to top, #eb9daa, #ecd4d4);
+    background: linear-gradient(to top, #f2637b, #ecd4d4);
     scroll-behavior: smooth;
 }
 
@@ -136,6 +136,7 @@ header{
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    height: 80vh;
 }
 
 .form_area {

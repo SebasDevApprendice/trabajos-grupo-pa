@@ -4,32 +4,38 @@ import java.sql.Date;
 
 import jakarta.persistence.*;
 
-
 @Entity
 @Table(name = "clientes")
-
 public class ClientesModel {
+    
     @Id
     @Column(name = "id", nullable = false)
     private long Id;
+
     @Column(name = "nombre", nullable = false)
     private String nombre;
+
     @Column(name = "fecha_nac", nullable = false)
     private Date fecha_nac;
+
     @Column(name = "telefono", nullable = false)
     private String telefono;
-    @Column(name = "email", nullable = false)
+
+    @Column(name = "email", nullable = false) // Arreglado "faalse"
     private String email;
+
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
+
     @Column(name = "direccion", nullable = false)
     private String direccion;
-    
 
-    public ClientesModel() {
-    }
+    @Column(name = "rol", nullable = false)
+    private String rol;
 
-    public ClientesModel(int Id, String nombre, Date fecha_nac, String telefono, String email, String contrasena, String direccion) {
+    public ClientesModel() {}
+
+    public ClientesModel(long Id, String nombre, Date fecha_nac, String telefono, String email, String contrasena, String direccion, String rol) {
         this.Id = Id;
         this.nombre = nombre;
         this.fecha_nac = fecha_nac;
@@ -37,6 +43,7 @@ public class ClientesModel {
         this.email = email;
         this.contrasena = contrasena;
         this.direccion = direccion;
+        this.rol = rol;
     }
 
     public long getId() {
@@ -95,4 +102,11 @@ public class ClientesModel {
         this.direccion = direccion;
     }
 
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 }

@@ -36,6 +36,7 @@ public class UsuarioModel {
         this.email = email;
         this.contrasena = contrasena;
         this.usrTipo = usrTipo;
+        
     }
 
     public long getId() {
