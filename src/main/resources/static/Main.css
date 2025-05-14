@@ -78,17 +78,24 @@ header {
     width: 100%;
 }
 
-.galery_wrapper {
-    z-index: -1;
-}
 
 .galery_grid {
     display: grid;
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     grid-auto-rows: 300px;
     gap: 12px;
     justify-content: center;
     padding: 10px;
+}
+
+.link_catalogo {
+    display: block;
+    height: 100%;
+}
+
+.link_catalogo>.grid_item {
+    height: 100%;
+    width: 100%;
 }
 
 .grid_item {
@@ -98,25 +105,26 @@ header {
     position: relative;
     overflow: hidden;
 }
-    .vestidos {
-        background-image: url('/img/ImgIndex/Vestidos.avif');
-    }
 
-    .calzado {
-        background-image: url("/img/ImgIndex/Sweet-Round-Toe-With-Bow-Lolita-Shoes-9.webp");
-    }
+.vestidos {
+    background-image: url('/img/ImgIndex/Vestidos.avif');
+}
 
-    .nuevas {
-        background-image: url("/img/ImgIndex/nuevasprendas.jpg");
-    }
+.calzado {
+    background-image: url("/img/ImgIndex/Sweet-Round-Toe-With-Bow-Lolita-Shoes-9.webp");
+}
 
-    .faldas {
-        background-image: url("/img/ImgIndex/descarga.avif");
-    }
+.nuevas {
+    background-image: url("/img/ImgIndex/nuevasprendas.jpg");
+}
 
-    .destacados {
-        background-image: url('/img/ImgIndex/destacados.jpg');
-    }
+.faldas {
+    background-image: url("/img/ImgIndex/descarga.avif");
+}
+
+.destacados {
+    background-image: url('/img/ImgIndex/destacados.jpg');
+}
 
 
 @keyframes aumentarEscala {
@@ -180,68 +188,69 @@ h2 {
 }
 
 /*---------- CARRUSEL SECTION ----------*/
-/* Estilos base para móviles */
 .carrusel {
     width: 100%;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
+    overflow: hidden;
     position: relative;
 }
 
-.carrusel_contenedor {
+.carrusel_wrapper {
+    position: relative;
+}
+
+.carrusel_items {
     display: flex;
-    gap: 10px;
-    padding: 10px;
-    scroll-snap-type: x mandatory;
+    transition: transform 0.5s ease;
     scroll-behavior: smooth;
-    overflow-x: auto;
 }
 
 .carrusel_item {
-    flex: 0 0 85%;
-    height: 200px;
+    flex: 0 0 100%;
+    height: 250px;
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
-    border: #3a0814 2px solid;
-    box-shadow: #3a0814 0px 0px 10px;
-    scroll-snap-align: center;
-    overflow: hidden;
 }
 
-/* Ocultamos navegación en móviles por ahora */
-.carrusel_nav {
-    display: none;
-}
-
-h2 {
-    text-align: center;
-    font-size: 28px;
+/* Botones */
+.carrusel_prev,
+.carrusel_next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    cursor: pointer;
     padding: 10px;
-    background-color: bisque;
-    font-family: "Sour Gummy";
+    z-index: 10;
+}
+
+.carrusel_prev {
+    left: 10px;
+}
+
+.carrusel_next {
+    right: 10px;
 }
 
 /*---------- MEDIA QUERIES(CARRUSEL) ----------*/
 
 @media screen and (min-width: 900px) {
-    .carrusel {
-        max-width: 505px;
-        margin: auto;
-    }
+.carrusel_items {
+display: flex;
+width: 100%;
+transition: transform 0.5s ease;
+}
 
-    .carrusel_item {
-        height: 350px;
-        background-color: #3a0814;
-    }
-
-    .carrusel_nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 0;
-    }
+.carrusel_item {
+flex: 0 0 100%;
+height: 250px;
+background-size: cover;
+background-position: center;
+margin-top: 16px;
+border-radius: 20px;
+}
 
     h2 {
         text-align: center;
@@ -254,29 +263,26 @@ h2 {
 
 @media screen and (min-width: 900px) {
     .carrusel {
-        max-width: 505px;
+        max-width: 700px;
         margin: auto;
-        overflow: hidden;
     }
 
     .carrusel_item {
         height: 350px;
     }
-
-    .carrusel_nav {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 0;
-    }
-
-    h2 {
-        font-size: 48px;
-        background-color: bisque;
-        box-shadow: #3a0814 3px 3px 10px;
-    }
 }
+
+h2 {
+    text-align: center;
+    font-size: 48px;
+    background-color: bisque;
+    box-shadow: #3a0814 3px 3px 10px;
+    margin: 0 auto;
+}
+
+
+/*---------- MEDIA QUERIES MAIN ----------*/
+
 @media screen and (min-width: 900px) {
     .galery_grid {
         grid-template-columns: repeat(3, minmax(300px, 1fr));
@@ -295,7 +301,7 @@ h2 {
         display: block;
     }
 
-    .link_catalogo > .grid_item {
+    .link_catalogo>.grid_item {
         width: 100%;
         height: 100%;
     }

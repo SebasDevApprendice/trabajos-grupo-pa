@@ -1,21 +1,27 @@
 /*---------- HEADER SECTION ----------*/
-*{
+* {
     box-sizing: border-box;
 }
 
-body{
+body {
     margin: 0;
     font-family: sans-serif;
     background: linear-gradient(to top, #e07789, #ecd4d4);
     scroll-behavior: smooth;
 }
 
-div, ul ,nav, header, footer, a, li {
+div,
+ul,
+nav,
+header,
+footer,
+a,
+li {
     margin: 0;
     padding: 0;
 }
 
-header{
+header {
     background: linear-gradient(to top, #f2637b, #facbcb);
     height: 80px;
     display: flex;
@@ -28,7 +34,7 @@ header{
 
 
 
-.header_nav{
+.header_nav {
     display: none;
     background-color: #ffffff;
     position: absolute;
@@ -39,39 +45,41 @@ header{
 }
 
 
-.nav-ul{
+.nav-ul {
     display: flex;
     flex-direction: column;
     height: 20px;
     margin: auto;
     justify-content: space-evenly;
     z-index: 1;
-    
+
 
 }
 
-.nav-item{
+.nav-item {
     list-style: none;
 }
 
-.nav-item a{
+.nav-item a {
     color: #3a0814;
 }
 
-.logo-img{
+.logo-img {
     max-width: 100%;
     width: 64px;
     margin: 10px 20px;
 }
+
 /*---------- CARRITO ----------*/
 .titulo {
     text-align: center;
     margin: 10px;
 }
+
 .galery_grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(300px, 750px));
-    grid-template-rows: repeat(2, minmax(250px, 100px));
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(5, minmax(130px, 100px));
     gap: 10px;
     justify-content: center;
     grid-auto-flow: dense;
@@ -81,43 +89,76 @@ header{
     border-radius: 10px;
     max-width: 1200px;
 }
+
 .grid_item {
+    display: flex;
+    gap: 15px;
     background-color: white;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    
-}
-.grid_item, .resumen {
+    padding: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.producto-img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.detalles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.info-izquierda {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.precio {
+    color: #222;
+}
+
+.info-derecha {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.atributo {
+    color: #333;
 }
 
 .grid_item:first-child {
-    grid-row: span 2;
+    grid-row: span 4;
+    grid-template-columns: 2fr;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: white;
 }
 
-.grid_item:nth-child(2) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.grid_item:nth-child(3) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 
-
-.grid_item:nth-child(4) {
+.grid_item:last-child {
     background-color: white;
+    grid-row: span 2;
+    font-size: 15px;
 }
+
 .maniqui-img {
-    max-width: 60%;
+    max-width: 95%;
 }
+
 .grid_item:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
@@ -127,18 +168,8 @@ header{
 
 .producto-img {
     padding: 10px;
-    max-width: 200px;
+    max-width: 100px;
     border-radius: 10px;
-}
-
-.detalles{
-    display: flex;
-    flex-direction: row;
-    background-color: #c7c6c69c;
-}
-
-.details{
-    float: right;
 }
 
 
@@ -146,24 +177,30 @@ ul {
     margin: 10px;
     list-style: none;
 }
+
 .resumen {
+    display: flex;
     background: white;
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
     width: 100%;
-    max-width: 450px;
+    max-width: 650px;
     margin: auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    flex-direction: column;
 }
+
 .total {
     width: 100%;
+    padding: 20px;
     max-width: 300px;
     margin: auto;
     font-weight: bold;
     font-size: 18px;
     text-align: center;
 }
+
 .acciones {
     display: flex;
     justify-content: flex-end;
@@ -200,8 +237,9 @@ button:hover {
     width: 100%;
     max-width: 200px;
     text-decoration: none;
-    
+
 }
+
 /* === BOTONES DE PRODUCTO === */
 .producto-botones {
     display: flex;
@@ -241,15 +279,18 @@ button:hover {
         align-items: stretch;
     }
 
-    .pagar, .regresar {
+    .pagar,
+    .regresar {
         width: 100%;
         margin-top: 10px;
     }
-@media (min-width: 400px) {
-    .titulo {
-        font-size: 20px;
+
+    @media (min-width: 400px) {
+        .titulo {
+            font-size: 20px;
+        }
     }
-}
+
     .producto {
         flex-direction: column;
         align-items: center;
@@ -274,30 +315,30 @@ button:hover {
 
 /*---------- MEDIA QUERIES (HEADER) ----------*/
 
-@container header (min-width: 900px){
-    body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to right, #ff758c, #ff7eb3);
+@container header (min-width: 900px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(to right, #ff758c, #ff7eb3);
 
     }
-    
-    .header_nav{
+
+    .header_nav {
         display: block;
         background: transparent !important;
-        position: static;   
+        position: static;
         height: auto;
         width: auto;
         justify-content: space-evenly;
         flex-direction: row;
         z-index: 1;
         background: linear-gradient(to top, #f2637b, #eb9c9c);
-        
+
     }
 
-    .nav-ul{
+    .nav-ul {
         flex-direction: row;
         background: none;
         align-items: center;
@@ -306,32 +347,34 @@ button:hover {
         font-size: 18px;
         height: auto;
         width: auto;
-        
+
     }
+
     .nav-item {
         list-style: none;
-        
+
     }
 
-    
+
     .nav-item a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 20px;
-    border-radius: 5px;
-    transition: all 0.3s ease, transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 8px 20px;
+        border-radius: 5px;
+        transition: all 0.3s ease, transform 0.2s ease;
     }
 
-    
+
     .nav-item a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
-    border-radius: 5px;
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+        border-radius: 5px;
     }
-    .header_open-nav-button{
+
+    .header_open-nav-button {
         display: none;
     }
 }

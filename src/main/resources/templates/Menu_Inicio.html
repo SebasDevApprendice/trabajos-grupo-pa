@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Principal || Ebisu</title>
-    
+
     <!-- CSS principal -->
     <link rel="stylesheet" href="Main.css" />
 
@@ -15,7 +15,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet" />
 </head>
 
 <body>
@@ -71,16 +72,20 @@
 
         <!-- CARRUSEL -->
         <h2>PRÓXIMA COLECCIÓN</h2>
-        <div class="carrusel">
-            <div class="carrusel_contenedor">
-                <div class="carrusel_item" style="background-image: url('/img/ImgIndex/PROXCOL1.jpg');"></div>
-                <div class="carrusel_item" style="background-image: url('/img/ImgIndex/COL2.jpg');"></div>
-                <div class="carrusel_item" style="background-image: url('/img/ImgIndex/COL3.jpg');"></div>
-            </div>
-            <div class="carrusel_nav">
-            </div>
-        </div>
+        <section class="carrusel">
+            <div class="carrusel_wrapper">
+                <div class="carrusel_items">
+                    <div class="carrusel_item" style="background-image: url('/img/ImgIndex/PROXCOL1.jpg');"></div>
+                    <div class="carrusel_item" style="background-image: url('/img/ImgIndex/COL2.jpg');"></div>
+                    <div class="carrusel_item" style="background-image: url('/img/ImgIndex/COL3.jpg');"></div>
+                </div>
+                <button class="carrusel_prev"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="carrusel_next"><i class="fa-solid fa-arrow-right"></i></button>
+        </section>
     </main>
+    <script src="script.js">
+        
+    </script>
 </body>
 
 </html>
