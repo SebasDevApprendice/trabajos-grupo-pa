@@ -1,80 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu Principal || Ebisu</title>
-    <link rel="stylesheet" href="Main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="Main.css" />
+
+    <!-- Íconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-
+    <!-- HEADER -->
     <header>
         <div class="logo">
-            <img src="img/ImgIndex/LogoEbisu.png" alt="" class="logo-img">
+            <img src="img/ImgIndex/LogoEbisu.png" alt="Logo Ebisu" class="logo-img" />
         </div>
         <nav class="header_nav">
             <ul class="nav-ul">
                 <li class="nav-item"><a href="/Menu_Inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
                 <li class="nav-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
+
+                <!-- Solo visible para ADMIN -->
                 <li class="nav-item" th:if="${cliente != null and cliente.rol == 'ADMIN'}">
                     <a href="/vistaAdmin"><i class="fa-solid fa-tools"></i> Administrar</a>
                 </li>
 
-
+                <!-- Si el usuario no ha iniciado sesión -->
                 <li class="nav-item" th:if="${cliente == null}">
                     <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
                 </li>
 
-
+                <!-- Si el usuario está logueado -->
                 <li class="nav-item" th:if="${cliente != null}">
                     <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </li>
             </ul>
         </nav>
     </header>
-    </div>
 
+    <!-- MAIN -->
     <main class="galery">
         <div class="galery_wrapper">
             <div class="galery_grid">
-                    <a class="link_catalogo" href="/catalogo?categoria=Vestidos">
-                        <div class="grid_item vestidos" data-text="Vestidos"></div>
-                    </a>
-                    <a class="link_catalogo" href="/catalogo?categoria=Calzado">
-                        <div class="grid_item calzado" data-text="Calzado"></div>
-                    </a>
-                    <a class="link_catalogo" href="/catalogo?categoria=Nuevas Prendas">
-                        <div class="grid_item nuevas" data-text="Nuevas Prendas"></div>
-                    </a>
-                    <a class="link_catalogo" href="/catalogo?categoria=Faldas">
-                        <div class="grid_item faldas" data-text="Faldas"></div>
-                    </a>
-                    <a class="link_catalogo" href="/catalogo?categoria=Destacados">
-                        <div class="grid_item destacados" data-text="Destacados"></div>
-                    </a>
+                <a class="link_catalogo" href="/catalogo?categoria=Vestidos">
+                    <div class="grid_item vestidos" data-text="Vestidos"></div>
+                </a>
+                <a class="link_catalogo" href="/catalogo?categoria=Calzado">
+                    <div class="grid_item calzado" data-text="Calzado"></div>
+                </a>
+                <a class="link_catalogo" href="/catalogo?categoria=Nuevas Prendas">
+                    <div class="grid_item nuevas" data-text="Nuevas Prendas"></div>
+                </a>
+                <a class="link_catalogo" href="/catalogo?categoria=Faldas">
+                    <div class="grid_item faldas" data-text="Faldas"></div>
+                </a>
+                <a class="link_catalogo" href="/catalogo?categoria=Destacados">
+                    <div class="grid_item destacados" data-text="Destacados"></div>
+                </a>
             </div>
         </div>
-        <h2> PROXIMA COLECCION</h2>
+
+        <!-- CARRUSEL -->
+        <h2>PRÓXIMA COLECCIÓN</h2>
         <div class="carrusel">
             <div class="carrusel_contenedor">
                 <div class="carrusel_item" style="background-image: url('/img/ImgIndex/PROXCOL1.jpg');"></div>
-                <div class="carrusel_item" style="background-image: url(' img/ImgIndex/COL2.jpg');"></div>
-                <div class="carrusel_item" style="background-image: url(' img/ImgIndex/COL3.jpg');"></div>
-
+                <div class="carrusel_item" style="background-image: url('/img/ImgIndex/COL2.jpg');"></div>
+                <div class="carrusel_item" style="background-image: url('/img/ImgIndex/COL3.jpg');"></div>
+            </div>
+            <div class="carrusel_nav">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-        </div>
     </main>
-    </div>
-
 </body>
-
 
 </html>
