@@ -10,26 +10,28 @@ public class ProductoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
-    
+
     @Column(name = "nombre", nullable = false)
     private String nombre;
-    
+
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
-    
+
     @Column(name = "precio", nullable = false)
     private Double precio;
-    
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "talla", nullable = false)
-    private String talla;
-    
+    private TallaEnum talla;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "categoria", nullable = false)
-    private String categoria;
+    private CategoriaEnum categoria;
 
     public ProductoModel() {
     }
 
-    public ProductoModel(Long codigo, String nombre, Integer cantidad, Double precio, String talla, String categoria) {
+    public ProductoModel(Long codigo, String nombre, Integer cantidad, Double precio, TallaEnum talla, CategoriaEnum categoria) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -66,17 +68,17 @@ public class ProductoModel {
         this.cantidad = cantidad;
     }
     
-    public String getCategoria() {
+    public CategoriaEnum getCategoria() {
         return categoria;
     }
-    public void setCategoria(String categoria) {
+    public void setCategoria(CategoriaEnum categoria) {
         this.categoria = categoria;
     }
     
-    public String getTalla() {
+    public TallaEnum getTalla() {
         return talla;
     }
-    public void setTalla(String talla) {
+    public void setTalla(TallaEnum talla) {
         this.talla = talla;
     }
 }

@@ -60,11 +60,14 @@
                     <input type="number" id="cantidad" th:field="*{cantidad}" required />
 
                     <label for="categoria">Categoría:</label>
-                    <input type="text" id="categoria" th:field="*{categoria}" required />
+                    <select id="categoria" th:field="*{categoria}" required>
+                        <option th:each="cat : ${categorias}" th:value="${cat}" th:text="${cat}"></option>
+                    </select>
 
                     <label for="talla">Talla:</label>
-                    <input type="text" id="talla" th:field="*{talla}" required />
-
+                    <select id="talla" th:field="*{talla}" required>
+                        <option th:each="t : ${tallas}" th:value="${t}" th:text="${t}"></option>
+                    </select>
                     <button type="submit">Agregar Producto</button>
                 </form>
             </section>
