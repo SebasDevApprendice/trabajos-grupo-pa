@@ -15,11 +15,6 @@ public class ClientesController extends SessionController {
     @Autowired
     private ClientesRepository clienteRepository;
 
-    @GetMapping("/login")
-    public String mostrarLogin(HttpSession session, Model model) {
-        model.addAttribute("cliente", new ClientesModel());
-        return "login"; 
-    }
 
     @PostMapping("/registrarCliente")
     public String registrarCliente(@ModelAttribute("cliente") ClientesModel cliente) {
@@ -28,19 +23,6 @@ public class ClientesController extends SessionController {
         return "redirect:/login";
     }
 
-    @PostMapping("/loginCliente")
-    public String loginCliente(@ModelAttribute("cliente") ClientesModel cliente, Model model, HttpSession session) {
-        ClientesModel clienteEnDB = clienteRepository.findByEmail(cliente.getEmail());
-
-        if (clienteEnDB != null && clienteEnDB.getContrasena().equals(cliente.getContrasena())) {
-            session.setAttribute("clienteLogueado", clienteEnDB);
-            return "redirect:/Menu_Inicio"; 
-        } else {
-            model.addAttribute("error", "Credenciales incorrectas");
-            model.addAttribute("cliente", new ClientesModel());
-            return "login";
-        }
-    }
 
     @GetMapping("/registroCl")
     public String mostrarFormularioRegistro(Model model) {

@@ -20,8 +20,9 @@ public class UsuarioModel {
     private String email;
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
+    @Enumerated(EnumType.STRING)
     @Column(name = "usrTipo", nullable = false)
-    private String usrTipo;
+    private TipoUsuario usrTipo;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "carrito_id", referencedColumnName = "id")
     private CarritoModel carrito;
@@ -29,7 +30,7 @@ public class UsuarioModel {
     public UsuarioModel() {
     }
 
-    public UsuarioModel(int Id, String nombre, Date fecha_nac, String email, String contrasena, String usrTipo) {
+    public UsuarioModel(int Id, String nombre, Date fecha_nac, String email, String contrasena, TipoUsuario usrTipo) {
         this.Id = Id;
         this.nombre = nombre;
         this.fecha_nac = fecha_nac;
@@ -79,11 +80,11 @@ public class UsuarioModel {
         this.contrasena = contrasena;
     }
 
-    public String getUsrTipo() {
+    public TipoUsuario getUsrTipo() {
         return usrTipo;
     }
 
-    public void setUsrTipo(String usrTipo) {
+    public void setUsrTipo(TipoUsuario usrTipo) {
         this.usrTipo = usrTipo;
     }
 

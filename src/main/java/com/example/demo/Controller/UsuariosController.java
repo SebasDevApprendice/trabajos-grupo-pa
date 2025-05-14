@@ -1,11 +1,13 @@
 package com.example.demo.Controller;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.Model.TipoUsuario;
 import com.example.demo.Model.UsuarioModel;
 import com.example.demo.Repository.UsuarioRepository;
 
@@ -25,10 +27,12 @@ public class UsuariosController {
     }
 
     model.addAttribute("usuario", usuario);
-    List<UsuarioModel> usuarios = usuarioRepository.findAll();
-    model.addAttribute("usuarios", usuarios);
+    model.addAttribute("usuarios", usuarioRepository.findAll());
+
+    model.addAttribute("tiposUsuario", TipoUsuario.values());
+
     return "formularioUsuarios";
-    }
+}
 
     @PostMapping("/agregarUsuario")
     public String agregarUsuario(@ModelAttribute UsuarioModel usuario) {

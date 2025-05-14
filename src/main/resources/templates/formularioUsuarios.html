@@ -63,8 +63,11 @@
                     <label for="contrasena">Contraseña:</label>
                     <input type="text" id="Contrasena" th:field="*{contrasena}" required />
 
-                    <label for="UsrTipo">TipoUsr:</label>
-                    <input type="text" id="UsrTipo" th:field="*{UsrTipo}" required />
+                    <label for="UsrTipo">Tipo de Usuario:</label>
+                    <select id="UsrTipo" th:field="*{UsrTipo}" required>
+                        <option value="" disabled selected>Seleccione un tipo</option>
+                        <option th:each="tipo : ${tiposUsuario}" th:value="${tipo}" th:text="${tipo}"></option>
+                    </select>
 
                     <button type="submit">Agregar Usuario</button>
                 </form>

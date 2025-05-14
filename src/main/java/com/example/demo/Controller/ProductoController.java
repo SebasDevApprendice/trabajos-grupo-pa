@@ -1,13 +1,14 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Model.CategoriaEnum;
 import com.example.demo.Model.ProductoModel;
+import com.example.demo.Model.TallaEnum;
 import com.example.demo.Repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @Controller
 public class ProductoController {
@@ -17,15 +18,16 @@ public class ProductoController {
 
     @GetMapping("/formularioRopa")
     public String mostrarFormularioYListado(@RequestParam(required = false) Long codigo, Model model) {
-    ProductoModel producto = (codigo != null) 
-        ? productoRepository.findById(codigo).orElse(new ProductoModel())
-        : new ProductoModel();
+    ProductoModel producto = (codigo != null)
+            ? productoRepository.findById(codigo).orElse(new ProductoModel())
+            : new ProductoModel();
 
     model.addAttribute("producto", producto);
-    List<ProductoModel> productos = productoRepository.findAll();
-    model.addAttribute("productos", productos);
+    model.addAttribute("productos", productoRepository.findAll());
+    model.addAttribute("tallas", TallaEnum.values());
+    model.addAttribute("categorias", CategoriaEnum.values());
     return "formularioRopa";
-    }
+}
 
     @PostMapping("/agregar")
     public String agregarProducto(@ModelAttribute ProductoModel producto) {
