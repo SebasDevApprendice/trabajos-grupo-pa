@@ -3,9 +3,8 @@ package com.example.demo.DTO;
 public class UsuarioLoginDto {
     private String email;
     private String contrasena;
-    private String tipo; // cliente, admin o asesor
+    private String tipo; 
 
-    // Getters y setters
     public String getEmail() {
         return email;
     }
