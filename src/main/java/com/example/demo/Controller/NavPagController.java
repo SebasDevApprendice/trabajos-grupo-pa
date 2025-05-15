@@ -45,9 +45,5 @@ public class NavPagController {
     public String formulario2() {
         return "formularioUsuarios";
     }
-    @RequestMapping("/catalogo")
-    public String caralogo() {
-        return "catalogo";
-    }
 
 }

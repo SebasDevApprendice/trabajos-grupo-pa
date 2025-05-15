@@ -118,11 +118,12 @@ header {
 
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 0.7fr));
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
     gap: 30px;
     padding: 40px;
     flex: 1;
 }
+
 
 .card {
     display: flex;
@@ -253,6 +254,10 @@ header {
     margin-bottom: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+}
+.tabla-productos{
+    grid-column: span 2;
 }
 
 .formulario h2,

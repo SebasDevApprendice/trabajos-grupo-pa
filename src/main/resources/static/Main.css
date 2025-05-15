@@ -1,444 +1,194 @@
-/*---------- HEADER SECTION ----------*/
+/* ---------- RESET Y BASE ---------- */
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Sour Gummy', sans-serif;
     background: linear-gradient(to top, #f2637b, #ecd4d4);
     scroll-behavior: smooth;
 }
 
-div,
 ul,
-nav,
-header,
-footer,
-a,
-li {
-    margin: 0;
+li,
+a {
+    list-style: none;
+    text-decoration: none;
     padding: 0;
+    margin: 0;
 }
 
+/* ---------- HEADER ---------- */
 header {
     background: linear-gradient(to top, #f2637b, #eb9c9c);
     height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    container-type: inline-size;
-    container-name: header;
     border-bottom: 3px solid rgba(0, 0, 0, 0.3);
-}
-
-
-
-.header_nav {
-    display: none;
-    background-color: #ffffff;
-    position: absolute;
-    height: 100vh;
-    width: 100vw;
-    top: 0;
-    z-index: -1;
-}
-
-
-.nav-ul {
-    display: flex;
-    flex-direction: column;
-    height: 20px;
-    margin: auto;
-    justify-content: space-evenly;
-    z-index: 1;
-
-
-}
-
-.nav-item {
-    list-style: none;
-}
-
-.nav-item a {
-    color: #3a0814;
+    padding: 0 20px;
 }
 
 .logo-img {
-    max-width: 100%;
-    width: 64px;
-    margin: 10px 20px;
+    height: 60px;
 }
 
-/*---------- MAIN SECTION ----------*/
-
-
-.galery {
-    position: relative;
-    width: 100%;
-}
-
-
-.galery_grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: 300px;
-    gap: 12px;
-    justify-content: center;
-    padding: 10px;
-}
-
-.link_catalogo {
-    display: block;
-    height: 100%;
-}
-
-.link_catalogo>.grid_item {
-    height: 100%;
-    width: 100%;
-}
-
-.grid_item {
-    background-size: cover;
-    background-position: center;
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-.vestidos {
-    background-image: url('/img/ImgIndex/Vestidos.avif');
-}
-
-.calzado {
-    background-image: url("/img/ImgIndex/Sweet-Round-Toe-With-Bow-Lolita-Shoes-9.webp");
-}
-
-.nuevas {
-    background-image: url("/img/ImgIndex/nuevasprendas.jpg");
-}
-
-.faldas {
-    background-image: url("/img/ImgIndex/descarga.avif");
-}
-
-.destacados {
-    background-image: url('/img/ImgIndex/destacados.jpg');
-}
-
-
-@keyframes aumentarEscala {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.03);
-    }
-}
-
-@keyframes aparecerTexto {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-
-
-.grid_item::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.178);
-    animation: none;
-}
-
-
-.grid_item::after {
-    content: attr(data-text);
-    position: absolute;
-    bottom: 15px;
-    left: 15px;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: "Sour Gummy", sans-serif;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: none;
-}
-
-
-.grid_item:hover::after {
-    animation: aparecerTexto 0.3s ease-in-out forwards;
-}
-
-h2 {
-    font-family: "Sour Gummy";
-}
-
-/*---------- CARRUSEL SECTION ----------*/
-.carrusel {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-.carrusel_wrapper {
-    position: relative;
-}
-
-.carrusel_items {
+.header_nav {
     display: flex;
-    transition: transform 0.5s ease;
-    scroll-behavior: smooth;
+    gap: 20px;
 }
 
-.carrusel_item {
-    flex: 0 0 100%;
-    height: 250px;
-    background-size: cover;
-    background-position: center;
+.nav-ul {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    font-size: 18px;
 }
 
-/* Botones */
-.carrusel_prev,
-.carrusel_next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
-    border: none;
+.nav-ul a {
+    color: #3a0814;
+    font-weight: bold;
+    padding: 8px 20px;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.nav-ul a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* ---------- CATEGORÍAS Y PRODUCTOS ---------- */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.categories {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    height: fit-content;
+}
+
+.categories h2 {
+    margin-top: 0;
+    color: #f2637b;
+}
+
+.categories ul {
+    list-style: none;
+}
+
+.categories li {
+    margin: 0.5rem 0;
     cursor: pointer;
-    padding: 10px;
-    z-index: 10;
+    color: #333;
 }
 
-.carrusel_prev {
-    left: 10px;
+.categories li:hover {
+    color: #f2637b;
 }
 
-.carrusel_next {
-    right: 10px;
+/* ---------- PRODUCTOS ---------- */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
 }
 
-/*---------- MEDIA QUERIES(CARRUSEL) ----------*/
-
-@media screen and (min-width: 900px) {
-.carrusel_items {
-display: flex;
-width: 100%;
-transition: transform 0.5s ease;
-}
-
-.carrusel_item {
-flex: 0 0 100%;
-height: 250px;
-background-size: cover;
-background-position: center;
-margin-top: 16px;
-border-radius: 20px;
-}
-
-    h2 {
-        text-align: center;
-        font-size: 48px;
-        background-color: bisque;
-        box-shadow: #3a0814 3px 3px 10px;
-    }
-}
-
-
-@media screen and (min-width: 900px) {
-    .carrusel {
-        max-width: 700px;
-        margin: auto;
-    }
-
-    .carrusel_item {
-        height: 350px;
-    }
-}
-
-h2 {
+.product-card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
     text-align: center;
-    font-size: 48px;
-    background-color: bisque;
-    box-shadow: #3a0814 3px 3px 10px;
-    margin: 0 auto;
 }
 
-
-/*---------- MEDIA QUERIES MAIN ----------*/
-
-@media screen and (min-width: 900px) {
-    .galery_grid {
-        grid-template-columns: repeat(3, minmax(300px, 1fr));
-        grid-template-rows: repeat(2, 300px);
-        gap: 12px;
-        justify-content: center;
-        grid-auto-flow: dense;
-        margin: 20px auto 80px;
-        max-width: 1200px;
-        padding: 0 10px;
-    }
-
-    .link_catalogo {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-    }
-
-    .link_catalogo>.grid_item {
-        width: 100%;
-        height: 100%;
-    }
-
-    .galery_grid a:first-child {
-        grid-column: span 2;
-        grid-row: span 2;
-    }
-
-    .galery_grid a:nth-child(3) {
-        grid-row: span 2;
-    }
-
-    .grid_item {
-        position: relative;
-        overflow: hidden;
-        box-shadow: #3a0814 2px 4px 20px;
-        background-size: cover;
-        background-position: center;
-        transition: transform 0.3s ease;
-    }
-
-    .grid_item::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 1;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .grid_item::after {
-        content: attr(data-text);
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        color: white;
-        font-size: 40px;
-        font-style: italic;
-        font-weight: bold;
-        font-family: "Sour Gummy", sans-serif;
-        opacity: 0;
-        z-index: 2;
-        transition: opacity 0.3s ease;
-    }
-
-    .grid_item:hover::before,
-    .grid_item:hover::after {
-        opacity: 1;
-    }
-
-    .vestidos {
-        background-image: url('/img/ImgIndex/Vestidos.avif');
-    }
-
-    .calzado {
-        background-image: url("/img/ImgIndex/Sweet-Round-Toe-With-Bow-Lolita-Shoes-9.webp");
-    }
-
-    .nuevas {
-        background-image: url("/img/ImgIndex/nuevasprendas.jpg");
-    }
-
-    .faldas {
-        background-image: url("/img/ImgIndex/descarga.avif");
-    }
-
-    .destacados {
-        background-image: url('/img/ImgIndex/destacados.jpg');
-    }
+.product-card:hover {
+    transform: scale(1.02);
 }
 
-/*---------- MEDIA QUERIES(HEADER) ----------*/
-@container header (min-width: 600px) {
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: linear-gradient(to right, #ff758c, #ff7eb3);
+.product-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
 
+.product-info {
+    padding: 1rem;
+}
+
+.product-info h3 {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+/* ---------- DETALLE DE PRODUCTO ---------- */
+.product-detail {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    width: 300px;
+    text-align: center;
+    display: none;
+    /* oculto por defecto */
+}
+
+.product-detail .icono-ropa {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.product-detail .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
     }
 
-    .header_nav {
-        display: block;
-        background: transparent !important;
-        position: static;
-        height: auto;
-        width: auto;
-        justify-content: space-evenly;
-        flex-direction: row;
-        z-index: 1;
-        background: linear-gradient(to top, #f2637b, #eb9c9c);
+    .product-card {
+        flex-direction: column;
+    }
 
+    .product-img {
+        height: 180px;
     }
 
     .nav-ul {
-        flex-direction: row;
-        background: none;
-        align-items: center;
-        gap: 30px;
-        padding-right: 40px;
-        font-size: 18px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header {
+        flex-direction: column;
         height: auto;
-        width: auto;
-
-    }
-
-    .nav-item {
-        list-style: none;
-
-    }
-
-
-    .nav-item a {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        text-decoration: none;
-        font-weight: bold;
-        padding: 8px 20px;
-        border-radius: 5px;
-        transition: all 0.3s ease, transform 0.2s ease;
-    }
-
-
-    .nav-item a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
-        border-radius: 5px;
-    }
-
-    .header_open-nav-button {
-        display: none;
+        padding: 10px;
     }
 }
