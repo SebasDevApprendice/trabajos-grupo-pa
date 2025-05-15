@@ -67,7 +67,7 @@
                     <label for="talla">Talla:</label>
                     <select id="talla" th:field="*{talla}" required>
                         <option th:each="t : ${tallas}" th:value="${t}" th:text="${t}"></option>
-                    </select>
+                    </select><br>
                     <button type="submit">Agregar Producto</button>
                 </form>
             </section>

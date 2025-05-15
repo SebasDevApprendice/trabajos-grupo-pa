@@ -27,6 +27,9 @@ public class ProductoModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "categoria", nullable = false)
     private CategoriaEnum categoria;
+    
+    @Column(name = "imagen_url")
+    private String imagenUrl;
 
     public ProductoModel() {
     }
@@ -81,5 +84,6 @@ public class ProductoModel {
     public void setTalla(TallaEnum talla) {
         this.talla = talla;
     }
+    
 }
 

@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu Principal || Ebisu</title>
-
-    <!-- CSS principal -->
-    <link rel="stylesheet" href="Main.css" />
-
-    <!-- Íconos de Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login || Ebisu</title>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet" />
+        rel="stylesheet">
 </head>
 
 <body>
-    <!-- HEADER -->
+
     <header>
         <div class="logo">
             <img src="img/ImgIndex/LogoEbisu.png" alt="Logo Ebisu" class="logo-img" />
@@ -30,61 +24,134 @@
                 <li class="nav-item"><a href="/Menu_Inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
                 <li class="nav-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
 
-                <!-- Solo visible para ADMIN -->
                 <li class="nav-item" th:if="${cliente != null and cliente.rol == 'ADMIN'}">
                     <a href="/vistaAdmin"><i class="fa-solid fa-tools"></i> Administrar</a>
                 </li>
-
-                <!-- Si el usuario no ha iniciado sesión -->
                 <li class="nav-item" th:if="${cliente == null}">
                     <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
                 </li>
 
-                <!-- Si el usuario está logueado -->
+
                 <li class="nav-item" th:if="${cliente != null}">
                     <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </li>
+
             </ul>
-        </nav>
     </header>
 
-    <!-- MAIN -->
-    <main class="galery">
-        <div class="galery_wrapper">
-            <div class="galery_grid">
-                <a class="link_catalogo" href="/catalogo?categoria=Vestidos">
-                    <div class="grid_item vestidos" data-text="Vestidos"></div>
-                </a>
-                <a class="link_catalogo" href="/catalogo?categoria=Calzado">
-                    <div class="grid_item calzado" data-text="Calzado"></div>
-                </a>
-                <a class="link_catalogo" href="/catalogo?categoria=Nuevas Prendas">
-                    <div class="grid_item nuevas" data-text="Nuevas Prendas"></div>
-                </a>
-                <a class="link_catalogo" href="/catalogo?categoria=Faldas">
-                    <div class="grid_item faldas" data-text="Faldas"></div>
-                </a>
-                <a class="link_catalogo" href="/catalogo?categoria=Destacados">
-                    <div class="grid_item destacados" data-text="Destacados"></div>
-                </a>
-            </div>
+    <div class="container">
+        <!-- Categorías -->
+        <div class="categories">
+            <h2>Categorías</h2>
+            <ul>
+                <li>Blusas</li>
+                <li>Faldas</li>
+                <li>Pantalones</li>
+                <li>Vestidos</li>
+            </ul>
         </div>
 
-        <!-- CARRUSEL -->
-        <h2>PRÓXIMA COLECCIÓN</h2>
-        <section class="carrusel">
-            <div class="carrusel_wrapper">
-                <div class="carrusel_items">
-                    <div class="carrusel_item" style="background-image: url('/img/ImgIndex/PROXCOL1.jpg');"></div>
-                    <div class="carrusel_item" style="background-image: url('/img/ImgIndex/COL2.jpg');"></div>
-                    <div class="carrusel_item" style="background-image: url('/img/ImgIndex/COL3.jpg');"></div>
+        <!-- Productos -->
+        <div class="products">
+            <div class="product-card" onclick="mostrarDetalles(this)"
+            data-nombre="Blusa Rosada" 
+            data-precio="80.000$"
+            data-talla="S" 
+            data-icono="👚">>
+                <img src="img/ImgProductos/BlusaRosa.jpeg" alt="" class="product-img" />
+                <div class="product-info">
+                    <h3>Blusa con mangas</h3>
+                    <p><strong>25$</strong></p>
+                    <p>Talla: M</p>
+                    <p>Cantidad: 5</p>
                 </div>
-                <button class="carrusel_prev"><i class="fa-solid fa-arrow-left"></i></button>
-                <button class="carrusel_next"><i class="fa-solid fa-arrow-right"></i></button>
-        </section>
-    </main>
-    <script src="script.js">
-        
+            </div>
+
+            <div class="product-card" onclick="mostrarDetalles(this)" 
+            data-nombre="Blusa Criminal" 
+            data-precio="40.000$"
+            data-talla="L" 
+            data-icono="👚">
+                <img src="img/ImgProductos/BlusaCriminal.jpeg" alt="Blusa Criminal" class="product-img" />
+                <div class="product-info">
+                    <h3>Blusa Criminal</h3>
+                    <p><strong>40$</strong></p>
+                    <p>Talla: L</p>
+                    <p>Cantidad: 2</p>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="mostrarDetalles(this)" 
+            data-nombre="Jean" 
+            data-precio="70.000$"
+            data-talla="30" 
+            data-icono="">
+                <img src="img/ImgProductos/Jean.jpeg" alt="" class="product-img" />
+                <div class="product-info">
+                    <h3>Jean</h3>
+                    <p><strong>75.000$</strong></p>
+                    <p>Talla: S</p>
+                    <p>Cantidad: 3</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="mostrarDetalles(this)"
+            data-nombre="Falda Gato" 
+            data-precio="70.000$"
+            data-talla="S" 
+            data-icono="👚">>
+                <img src="img/ImgProductos/FaldaGato.jpeg" alt="" class="product-img" />
+                <div class="product-info">
+                    <h3>FaldaGato</h3>
+                    <p><strong>60$</strong></p>
+                    <p>Talla: S</p>
+                    <p>Cantidad: 3</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="detalle-producto" class="product-detail hidden">
+        <span class="close-btn" onclick="cerrarDetalle()">×</span>
+        <div id="detalle-icono" <i class="fa-solid fa-shirt"></i></div>
+        <h2 id="detalle-nombre">Nombre</h2>
+        <p><strong>Precio:</strong> <span id="detalle-precio"></span></p>
+        <p><strong>Talla:</strong> <span id="detalle-talla"></span></p>
+        <p><strong>Garantía:</strong> <span id="detalle-garantia">30 días por defectos de fábrica</span></p>
+        <p><strong>Promoción:</strong> <span id="detalle-promocion">Envío gratis por compras superiores a $100</span></p>
+        <button class="btn-carrito" onclick="irAlCarrito()">Agregar Al Carrito</button>
+    </div>
+
+    <script>
+            function mostrarDetalles(elemento) {
+            console.log("click detectado en:", elemento);
+
+            // Obtener atributos
+            const nombre = elemento.getAttribute('data-nombre');
+            const precio = elemento.getAttribute('data-precio');
+            const talla = elemento.getAttribute('data-talla');
+            const icono = elemento.getAttribute('data-icono') || "👕";
+
+            // Actualizar modal
+            document.getElementById('detalle-nombre').textContent = nombre;
+            document.getElementById('detalle-precio').textContent = precio;
+            document.getElementById('detalle-talla').textContent = talla;
+            document.getElementById('detalle-icono').textContent = icono;
+
+            // Mostrar modal
+            document.getElementById('detalle-producto').classList.remove('hidden');
+            document.getElementById('detalle-producto').style.display = 'block';
+        }
+
+        function cerrarDetalle() {
+            const modal = document.getElementById('detalle-producto');
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
+        }
+
+        function irAlCarrito() {
+            window.location.href = "/carrito";
+        }
     </script>
 </body>
 
