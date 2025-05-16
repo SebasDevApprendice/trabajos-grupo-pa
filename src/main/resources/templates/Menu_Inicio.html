@@ -126,19 +126,19 @@
             function mostrarDetalles(elemento) {
             console.log("click detectado en:", elemento);
 
-            // Obtener atributos
+
             const nombre = elemento.getAttribute('data-nombre');
             const precio = elemento.getAttribute('data-precio');
             const talla = elemento.getAttribute('data-talla');
             const icono = elemento.getAttribute('data-icono') || "👕";
 
-            // Actualizar modal
+
             document.getElementById('detalle-nombre').textContent = nombre;
             document.getElementById('detalle-precio').textContent = precio;
             document.getElementById('detalle-talla').textContent = talla;
             document.getElementById('detalle-icono').textContent = icono;
 
-            // Mostrar modal
+
             document.getElementById('detalle-producto').classList.remove('hidden');
             document.getElementById('detalle-producto').style.display = 'block';
         }
