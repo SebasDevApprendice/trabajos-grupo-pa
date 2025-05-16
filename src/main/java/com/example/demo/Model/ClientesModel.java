@@ -30,12 +30,15 @@ public class ClientesModel {
     @Column(name = "direccion", nullable = false)
     private String direccion;
 
+    @Column(name = "saldo", nullable = false)
+    private double saldo;
+
     @Column(name = "rol", nullable = false)
     private String rol;
 
     public ClientesModel() {}
 
-    public ClientesModel(long Id, String nombre, Date fecha_nac, String telefono, String email, String contrasena, String direccion, String rol) {
+    public ClientesModel(long Id, String nombre, Date fecha_nac, String telefono, String email, String contrasena, String direccion, double saldo, String rol) {
         this.Id = Id;
         this.nombre = nombre;
         this.fecha_nac = fecha_nac;
@@ -43,6 +46,7 @@ public class ClientesModel {
         this.email = email;
         this.contrasena = contrasena;
         this.direccion = direccion;
+        this.saldo = saldo;
         this.rol = rol;
     }
 
@@ -100,6 +104,14 @@ public class ClientesModel {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public double getSaldo(){
+        return saldo;
+    }
+
+    public void setSaldo(double saldo){
+        this.saldo = saldo;
     }
 
     public String getRol() {

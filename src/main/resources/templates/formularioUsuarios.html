@@ -49,13 +49,13 @@
                 <h2>Agregar Usuario</h2>
                 <form th:action="${usuario.id != null} ? @{/editarUsuario} : @{/agregarUsuario}" th:object="${usuario}" method="post">
                     <label for="id">Documento:</label>
-                    <input type="number" th:field="*{id}" required />
+                    <input type="number" min = "1" step = "1" th:field="*{id}" required />
 
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="Nombre" th:field="*{nombre}" required />
 
                     <label for="fecha_nac">Fecha_nac:</label>
-                    <input type="date" id="fecha_nac" th:field="*{fecha_nac}" required />
+                    <input class="form_style" type="date" th:field="*{fecha_nac}" th:attr="max=${fechaMaxima}" required>
 
                     <label for="email">Email:</label>
                     <input type="text" id="email" th:field="*{email}" required />

@@ -36,7 +36,7 @@
         <form th:action="@{/registrarCliente}" th:object="${cliente}" method="post">
             <div class="form_group">
                 <label class="sub_title">Documento</label>
-                <input class="form_style" type="number" th:field="*{id}" required>
+                <input class="form_style" type="number" min = "1" step = "1" th:field="*{id}" required>
             </div>
             <div class="form_group">
                 <label class="sub_title">Nombre</label>
@@ -48,7 +48,7 @@
             </div>
             <div class="form_group">
                 <label class="sub_title">Fecha de nacimiento</label>
-                <input class="form_style" type="date" th:field="*{fecha_nac}" required>
+                <input class="form_style" type="date" th:field="*{fecha_nac}" th:attr="max=${fechaMaxima}" required>
             </div>
             <div class="form_group">
                 <label class="sub_title">Direccion</label>
@@ -62,7 +62,7 @@
                 <label class="sub_title">Contraseña</label>
                 <input class="form_style" type="password" th:field="*{contrasena}" required>
             </div>
-            <button class="btn" type="submit">
+            <button class="btn" type="button">
                 <a href="/login">INICIAR SESION</a>
             </button>
             <button class="btn" type="submit"> Registrarse
