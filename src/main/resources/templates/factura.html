@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login || Ebisu</title>
+    <link rel="stylesheet" href="/Main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="img/ImgIndex/LogoEbisu.png" alt="Logo Ebisu" class="logo-img" />
+        </div>
+        <nav class="header_nav">
+            <ul class="nav-ul">
+                <li class="nav-item"><a href="/Menu_Inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
+                <li class="nav-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
+
+                <li class="nav-item" th:if="${cliente != null and cliente.rol == 'ADMIN'}">
+                    <a href="/vistaAdmin"><i class="fa-solid fa-tools"></i> Administrar</a>
+                </li>
+                <li class="nav-item" th:if="${cliente == null}">
+                    <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
+                </li>
+
+
+                <li class="nav-item" th:if="${cliente != null}">
+                    <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                </li>
+
+            </ul>
+    </header>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura - Ebisu</title>
+    <link rel="stylesheet" href="factura.css">
+</head>
+<body>
+    <div class="factura-container">
+        <!-- Formulario de pago -->
+        <div class="formulario-pago">
+            <h2>Datos de Pago</h2>
+            <form>
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="tarjeta">Número de tarjeta</label>
+                <input type="text" id="tarjeta" name="tarjeta" placeholder="1234 5678 9012 3456" required>
+
+                <label for="fecha">Fecha de vencimiento</label>
+                <input type="month" id="fecha" name="fecha" required>
+
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" maxlength="3" required>
+
+                <button type="submit">Pagar</button>
+                <button type="button" onclick="window.history.back()">Volver</button>
+            </form>
+        </div>
+
+        <!-- Detalles de la factura -->
+        <div class="detalles-factura">
+            <h3>Resumen de la Compra</h3>
+            <ul>
+                <li>Producto 1 - $40.000</li>
+                <li>Producto 2 - $25.000</li>
+                <li>Producto 3 - $35.000</li>
+            </ul>
+            <p><strong>Total:</strong> $100.000</p>
+        </div>
+    </div>
+</body>
+</html>
+
+    

@@ -8,6 +8,8 @@ body {
     font-family: 'Sour Gummy', sans-serif;
     background: linear-gradient(to top, #f2637b, #ecd4d4);
     scroll-behavior: smooth;
+    max-width: 100%;
+    min-height: 49dvw;
 }
 
 ul,
@@ -191,4 +193,79 @@ header {
         height: auto;
         padding: 10px;
     }
+}
+.factura-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.formulario-pago {
+    flex: 2;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.formulario-pago h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #f2637b;
+}
+
+.formulario-pago label {
+    display: block;
+    margin-top: 1rem;
+}
+
+.formulario-pago input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.formulario-pago button {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #f2637b;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.formulario-pago button:hover {
+    background-color: #e3526c;
+}
+
+.detalles-factura {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.detalles-factura h3 {
+    margin-top: 0;
+    color: #f2637b;
+}
+
+.detalles-factura ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detalles-factura li {
+    margin: 0.5rem 0;
 }

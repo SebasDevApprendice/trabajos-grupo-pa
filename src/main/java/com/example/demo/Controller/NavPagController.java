@@ -46,4 +46,9 @@ public class NavPagController {
         return "formularioUsuarios";
     }
 
+    @RequestMapping("/factura")
+    public String factura(){
+        return "factura";
+    }
+
 }

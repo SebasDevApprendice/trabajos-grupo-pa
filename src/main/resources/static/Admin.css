@@ -4,7 +4,7 @@
 
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Sour Gummy', sans-serif;
     background: linear-gradient(to top, #f2637b, #ecd4d4);
     scroll-behavior: smooth;
 }
@@ -188,6 +188,7 @@ header {
         justify-content: center;
         align-items: center;
         height: 100vh;
+        font-family: 'Sour Gummy', sans-serif;
         background: linear-gradient(to right, #ff758c, #ff7eb3);
 
     }
