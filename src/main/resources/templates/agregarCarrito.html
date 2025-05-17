@@ -21,55 +21,52 @@
             <li class="nav-item"><a href="/Menu_Inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
             <li class="nav-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
 
-                <li class="nav-item" th:if="${cliente == null}">
-                    <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
-                </li>
+            <li class="nav-item" th:if="${cliente == null}">
+                <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
+            </li>
 
 
-                <li class="nav-item" th:if="${cliente != null}">
-                    <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-                </li>
+            <li class="nav-item" th:if="${cliente != null}">
+                <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </li>
         </ul>
     </nav>
 </header>
 
 <body>
     <main class="detalle-container">
-    <div class="detalle-card">
-        <div class="producto-imagen">
-            <img />
+        <div class="detalle-card">
+
+            <div class="detalle-info">
+                <h1 th:text="${producto.nombre}">Nombre del Producto</h1>
+
+                <p class="precio">Precio: <span th:text="${producto.precio}">$0.00</span></p>
+                <p class="descripcion" th:text="${producto.descripcion}">Descripción</p>
+                <p>Categoría: <span th:text="${producto.categoria}">Ropa</span></p>
+                <p class="garantia">Garantía: <span th:text="${producto.garantia}">6 meses</span></p>
+
+                <form th:action="@{'/agregar/' + ${producto.codigo}}" method="post">
+                    <input type="hidden" name="productoId" th:value="${producto.codigo}" />
+
+                    <label for="talla">Talla:</label>
+                    <select name="talla" required>
+                        <option th:each="t : ${producto.tallasDisponibles}" th:value="${t}" th:text="${t}">S</option>
+                    </select>
+
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" name="cantidad" min="1" value="1" required />
+
+                    <div class="botones">
+                        <button class="btn verde" type="submit">Agregar al carrito</button>
+                        <button class="btn gris" type="button" onclick="window.history.back()">Volver</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <div class="detalle-info">
-            <h1 th:text="${producto.nombre}">Nombre del Producto</h1>
-
-            <p class="precio">Precio: <span th:text="${producto.precio}">$0.00</span></p>
-            <p class="descripcion" th:text="${producto.descripcion}">Descripción</p>
-            <p>Categoría: <span th:text="${producto.categoria}">Ropa</span></p>
-            <p class="garantia">Garantía: <span th:text="${producto.garantia}">6 meses</span></p>
-
-            <form th:action="@{/carrito/agregar}" method="post">
-                <input type="hidden" name="productoId" th:value="${producto.id}" />
-
-                <label for="talla">Talla:</label>
-                <select name="talla" required>
-                    <option th:each="t : ${producto.tallasDisponibles}" th:value="${t}" th:text="${t}">S</option>
-                </select>
-
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" name="cantidad" min="1" value="1" required />
-
-                <div class="botones">
-                    <button class="btn verde" type="submit">Agregar al carrito</button>
-                    <button class="btn gris" type="button">Volver</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</main>
-<footer>
-    <p>&copy; 2025 Ebisu. Todos los derechos reservados.</p>
-</footer>
+    </main>
+    <footer>
+        <p>&copy; 2025 Ebisu. Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 

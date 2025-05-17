@@ -105,6 +105,15 @@ header {
     border-radius: 12px;
 }
 
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .product-card {
     background-color: white;
     border-radius: 12px;

@@ -23,9 +23,7 @@ public class UsuarioModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "usrTipo", nullable = false)
     private TipoUsuario usrTipo;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "carrito_id", referencedColumnName = "id")
-    private CarritoModel carrito;
+    
 
     public UsuarioModel() {
     }
@@ -86,14 +84,6 @@ public class UsuarioModel {
 
     public void setUsrTipo(TipoUsuario usrTipo) {
         this.usrTipo = usrTipo;
-    }
-
-    public CarritoModel getCarrito() {
-        return carrito;
-    }
-
-    public void setCarrito(CarritoModel carrito) {
-        this.carrito = carrito;
     }
 
 }
