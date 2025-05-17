@@ -16,10 +16,10 @@ public class CatalogoController {
     @Autowired
     private ProductoRepository productoRepository;
 
-    @GetMapping("/catalogo")
+    @GetMapping("/Menu_Inicio")
     public String mostrarCatalogo(Model model) {
         List<ProductoModel> productos = productoRepository.findAll(); // << Aquí usas el repo directo
         model.addAttribute("productos", productos);
-        return "catalogo";
+        return "Menu_Inicio";
     }
 }

@@ -36,6 +36,10 @@ public class ClientesModel {
     @Column(name = "rol", nullable = false)
     private String rol;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "carrito_id", referencedColumnName = "id")
+    private CarritoModel carrito;
+
     public ClientesModel() {}
 
     public ClientesModel(long Id, String nombre, Date fecha_nac, String telefono, String email, String contrasena, String direccion, double saldo, String rol) {
@@ -121,4 +125,14 @@ public class ClientesModel {
     public void setRol(String rol) {
         this.rol = rol;
     }
+
+    public CarritoModel getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(CarritoModel carrito) {
+        this.carrito = carrito;
+    }
+
+    
 }

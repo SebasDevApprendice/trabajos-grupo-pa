@@ -118,5 +118,42 @@
                 </div>
         </div>
 
+            <h1>Tu Carrito</h1>
+
+    <div th:if="${carritoProductos != null}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${carritoProductos}">
+                    <td th:text="${item.producto.nombre}">Nombre</td>
+                    <td th:text="${item.producto.precio}">$0.00</td>
+                    <td>
+                        <form th:action="@{'/carrito/actualizar/' + ${item.producto.codigo}}" method="post">
+                            <input type="number" name="cantidad" th:value="${item.cantidad}" min="1" required>
+                            <button type="submit">Actualizar</button>
+                        </form>
+                    </td>
+                    <td th:text="${item.producto.precio * item.cantidad}">$0.00</td>
+                    <td>
+                        <form th:action="@{'/carrito/eliminar/' + ${item.producto.codigo}}" method="post">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Total: <span th:text="${carrito.costoCarrito}">$0.00</span></h2>
+        <button onclick="window.location.href='/Menu_Inicio'">Seguir comprando</button>
+    </div>
+
 </body>
 </html>

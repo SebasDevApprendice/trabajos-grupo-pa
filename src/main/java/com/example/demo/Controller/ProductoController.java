@@ -41,7 +41,7 @@ public class ProductoController {
         return "formularioEdit";}
 
 @PostMapping("/editar")
-    public String editarUsuario(@ModelAttribute ProductoModel producto) {
+    public String editarRopa(@ModelAttribute ProductoModel producto) {
         productoRepository.save(producto);
         return "redirect:/formularioRopa";
     }

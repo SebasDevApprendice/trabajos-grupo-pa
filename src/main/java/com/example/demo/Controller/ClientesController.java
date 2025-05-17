@@ -56,11 +56,6 @@ public class ClientesController extends SessionController {
         return "Menu_Inicio";
     }
 
-    @GetMapping("/carrito")
-    public String verCarrito(HttpSession session, Model model) {
-        agregarClienteAModel(session, model);
-        return "carrito";
-    }
 
     @GetMapping("/vistaAdmin")
     public String vistaAdmin(HttpSession session, Model model) {

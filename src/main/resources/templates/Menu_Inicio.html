@@ -53,59 +53,29 @@
 
         <!-- Productos -->
         <div class="products">
-            <div class="product-card" onclick="mostrarDetalles(this)"
-            data-nombre="Blusa Rosada" 
-            data-precio="80.000$"
-            data-talla="S" 
-            data-icono="👚">>
-                <img src="img/ImgProductos/BlusaRosa.jpeg" alt="" class="product-img" />
-                <div class="product-info">
-                    <h3>Blusa con mangas</h3>
-                    <p><strong>25$</strong></p>
-                    <p>Talla: M</p>
-                    <p>Cantidad: 5</p>
-                </div>
-            </div>
-
-            <div class="product-card" onclick="mostrarDetalles(this)" 
-            data-nombre="Blusa Criminal" 
-            data-precio="40.000$"
-            data-talla="L" 
-            data-icono="👚">
-                <img src="img/ImgProductos/BlusaCriminal.jpeg" alt="Blusa Criminal" class="product-img" />
-                <div class="product-info">
-                    <h3>Blusa Criminal</h3>
-                    <p><strong>40$</strong></p>
-                    <p>Talla: L</p>
-                    <p>Cantidad: 2</p>
-                </div>
-            </div>
-
-            <div class="product-card" onclick="mostrarDetalles(this)" 
-            data-nombre="Jean" 
-            data-precio="70.000$"
-            data-talla="30" 
-            data-icono="">
-                <img src="img/ImgProductos/Jean.jpeg" alt="" class="product-img" />
-                <div class="product-info">
-                    <h3>Jean</h3>
-                    <p><strong>75.000$</strong></p>
-                    <p>Talla: S</p>
-                    <p>Cantidad: 3</p>
-                </div>
-            </div>
-            <div class="product-card" onclick="mostrarDetalles(this)"
-            data-nombre="Falda Gato" 
-            data-precio="70.000$"
-            data-talla="S" 
-            data-icono="👚">>
-                <img src="img/ImgProductos/FaldaGato.jpeg" alt="" class="product-img" />
-                <div class="product-info">
-                    <h3>FaldaGato</h3>
-                    <p><strong>60$</strong></p>
-                    <p>Talla: S</p>
-                    <p>Cantidad: 3</p>
-                </div>
+            <table>
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Carrito</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="producto : ${productos}">
+            <td>
+                <img th:src="${producto.imagenUrl}" alt="Imagen del Producto">
+            </td>
+            <td th:text="${producto.nombre}">Nombre</td>
+            <td th:text="${producto.precio}">$0.00</td>
+            <td th:text="${producto.talla}">Talla</td>
+            <td>
+                <a th:href="@{'/agregarCarrito?productoId=' + ${producto.codigo}}" class="btn">Agregar al Carrito</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
             </div>
 
@@ -121,38 +91,6 @@
         <p><strong>Promoción:</strong> <span id="detalle-promocion">Envío gratis por compras superiores a $100</span></p>
         <button class="btn-carrito" onclick="irAlCarrito()">Agregar Al Carrito</button>
     </div>
-
-    <script>
-            function mostrarDetalles(elemento) {
-            console.log("click detectado en:", elemento);
-
-            // Obtener atributos
-            const nombre = elemento.getAttribute('data-nombre');
-            const precio = elemento.getAttribute('data-precio');
-            const talla = elemento.getAttribute('data-talla');
-            const icono = elemento.getAttribute('data-icono') || "👕";
-
-            // Actualizar modal
-            document.getElementById('detalle-nombre').textContent = nombre;
-            document.getElementById('detalle-precio').textContent = precio;
-            document.getElementById('detalle-talla').textContent = talla;
-            document.getElementById('detalle-icono').textContent = icono;
-
-            // Mostrar modal
-            document.getElementById('detalle-producto').classList.remove('hidden');
-            document.getElementById('detalle-producto').style.display = 'block';
-        }
-
-        function cerrarDetalle() {
-            const modal = document.getElementById('detalle-producto');
-            modal.classList.add('hidden');
-            modal.style.display = 'none';
-        }
-
-        function irAlCarrito() {
-            window.location.href = "/carrito";
-        }
-    </script>
 </body>
 
 </html>
