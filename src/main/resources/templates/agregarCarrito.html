@@ -36,9 +36,6 @@
 <body>
     <main class="detalle-container">
         <div class="detalle-card">
-            <div class="producto-imagen">
-                <img src="${producto.imagenUrl}" alt="imagen del producto">
-            </div>
 
             <div class="detalle-info">
                 <h1 th:text="${producto.nombre}">Nombre del Producto</h1>
@@ -48,7 +45,7 @@
                 <p>Categoría: <span th:text="${producto.categoria}">Ropa</span></p>
                 <p class="garantia">Garantía: <span th:text="${producto.garantia}">6 meses</span></p>
 
-                <form th:action="@{'/carrito/agregar/' + ${producto.codigo}}" method="post">
+                <form th:action="@{'/agregar/' + ${producto.codigo}}" method="post">
                     <input type="hidden" name="productoId" th:value="${producto.codigo}" />
 
                     <label for="talla">Talla:</label>

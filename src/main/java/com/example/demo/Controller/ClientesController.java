@@ -1,11 +1,14 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.ClientesModel;
+import com.example.demo.Model.ProductoModel;
 import com.example.demo.Repository.ClientesRepository;
+import com.example.demo.Repository.ProductoRepository;
 
 import jakarta.servlet.http.HttpSession;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,9 @@ public class ClientesController extends SessionController {
 
     @Autowired
     private ClientesRepository clienteRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
 
 
     @PostMapping("/registrarCliente")
@@ -53,6 +59,8 @@ public class ClientesController extends SessionController {
     @GetMapping("/Menu_Inicio")
     public String menuInicio(HttpSession session, Model model) {
         agregarClienteAModel(session, model);
+        List<ProductoModel> productos = productoRepository.findAll(); // << Aquí usas el repo directo
+        model.addAttribute("productos", productos);
         return "Menu_Inicio";
     }
 

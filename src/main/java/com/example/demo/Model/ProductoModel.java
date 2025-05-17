@@ -84,6 +84,16 @@ public class ProductoModel {
     public void setTalla(TallaEnum talla) {
         this.talla = talla;
     }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
+    
     
 }
 

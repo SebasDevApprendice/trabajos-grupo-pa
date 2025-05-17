@@ -59,19 +59,24 @@
             <th>Imagen</th>
             <th>Nombre</th>
             <th>Precio</th>
+            <th>Talla</th>
             <th>Carrito</th>
         </tr>
     </thead>
     <tbody>
         <tr th:each="producto : ${productos}">
             <td>
-                <img th:src="${producto.imagenUrl}" alt="Imagen del Producto">
+                <img class="product-img" th:src="${producto.imagenUrl != null ? producto.imagenUrl : '/img/default.png'}" alt="Imagen del Producto">
             </td>
             <td th:text="${producto.nombre}">Nombre</td>
             <td th:text="${producto.precio}">$0.00</td>
             <td th:text="${producto.talla}">Talla</td>
             <td>
-                <a th:href="@{'/agregarCarrito?productoId=' + ${producto.codigo}}" class="btn">Agregar al Carrito</a>
+                <form th:action="@{'/agregar/' + ${producto.codigo}}" method="post">
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" name="cantidad" min="1" value="1" required />
+                    <button type="submit" class="btn">Agregar al Carrito</button>
+                </form>
             </td>
         </tr>
     </tbody>

@@ -10,11 +10,11 @@ public class CarritoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "nombre", nullable = false)
+    @Column(name = "costoCarrito", nullable = false)
     private float costoCarrito;
     @OneToOne(mappedBy = "carrito")
     private ClientesModel cliente;
-    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<CarritoProductoModel> carritoProductos = new ArrayList<>();
 
     public CarritoModel() {

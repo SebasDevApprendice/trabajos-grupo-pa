@@ -14,7 +14,7 @@ public class CarritoProductoModel {
     @JoinColumn(name = "carrito_id", nullable = false)
     private CarritoModel carrito;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "producto_codigo", nullable = false)
     private ProductoModel producto;
 
