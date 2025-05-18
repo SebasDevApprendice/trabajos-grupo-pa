@@ -98,7 +98,7 @@ header {
 /* ---------- PRODUCTOS ---------- */
 .products {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 0.3fr));
     gap: 2rem;
     background-color: #fff;
     padding: 2rem;

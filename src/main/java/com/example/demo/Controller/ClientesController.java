@@ -63,8 +63,15 @@ public class ClientesController extends SessionController {
 
     @GetMapping("/Menu_Inicio")
     public String menuInicio(HttpSession session, Model model) {
-        // Agregar cliente al modelo (de SessionController)
-        agregarClienteAModel(session, model);
+        
+        System.out.println("Cliente en sesión: " + session.getAttribute("clienteLogueado"));
+        System.out.println("Usuario en sesión: " + session.getAttribute("usuarioLogueado"));
+
+        agregarSesion(session, model);
+
+        if (session.getAttribute("clienteLogueado") == null && session.getAttribute("usuarioLogueado") == null) {
+        return "redirect:/login";
+        }
 
         // Obtener productos y agruparlos para el catálogo
         List<ProductoModel> todos = productoRepository.findAll();
@@ -89,15 +96,5 @@ public class ClientesController extends SessionController {
         return "Menu_Inicio";
     }
 
-
-    @GetMapping("/vistaAdmin")
-    public String vistaAdmin(HttpSession session, Model model) {
-        agregarClienteAModel(session, model);
-        return "vistaAdmin";
-    }
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-    session.invalidate();
-    return "redirect:/Menu_Inicio"; 
-}
+    
 }

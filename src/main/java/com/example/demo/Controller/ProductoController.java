@@ -5,19 +5,26 @@ import com.example.demo.Model.ProductoModel;
 import com.example.demo.Model.TallaEnum;
 import com.example.demo.Repository.ProductoRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class ProductoController {
+public class ProductoController extends SessionController {
 
     @Autowired
     private ProductoRepository productoRepository;
 
     @GetMapping("/formularioRopa")
-    public String mostrarFormularioYListado(@RequestParam(required = false) Long codigo, Model model) {
+    public String mostrarFormularioYListado(@RequestParam(required = false) Long codigo, Model model, HttpSession session) {
+
+        if (!sesionAdminOAsesor(session, model)) {
+        return "redirect:/login";
+    }
+
         ProductoModel producto = (codigo != null)
             ? productoRepository.findById(codigo).orElse(new ProductoModel())
             : new ProductoModel();

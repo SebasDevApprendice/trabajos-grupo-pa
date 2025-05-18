@@ -5,6 +5,7 @@ import com.example.demo.Model.CarritoProductoModel;
 import com.example.demo.Model.ClientesModel;
 import com.example.demo.Model.ProductoModel;
 import com.example.demo.Model.TallaEnum;
+import com.example.demo.Model.UsuarioModel;
 import com.example.demo.Repository.CarritoProductoRepository;
 import com.example.demo.Repository.CarritoRepository;
 import com.example.demo.Repository.ClientesRepository;
@@ -18,7 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class CarritoController {
+public class CarritoController extends SessionController {
 
     @Autowired
     private CarritoRepository carritoRepository;
@@ -35,11 +36,20 @@ public class CarritoController {
     @GetMapping("/carrito")
     public String verCarrito(HttpSession session, Model model) {
         ClientesModel cliente = (ClientesModel) session.getAttribute("clienteLogueado");
+        UsuarioModel usuario = (UsuarioModel) session.getAttribute("usuarioLogueado");
 
-        if (cliente == null) {
+        if (cliente == null && usuario == null) {
             return "redirect:/login";
         }
 
+        model.addAttribute("cliente", cliente);
+        model.addAttribute("usuarioLogueado", usuario);
+
+            agregarSesion(session, model);
+            
+        if (cliente == null) {
+            return "redirect:/login";
+        }
         CarritoModel carrito = cliente.getCarrito();
         if (carrito == null) {
             carrito = new CarritoModel();

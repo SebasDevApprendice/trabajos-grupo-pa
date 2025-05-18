@@ -11,14 +11,21 @@ import com.example.demo.Model.TipoUsuario;
 import com.example.demo.Model.UsuarioModel;
 import com.example.demo.Repository.UsuarioRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
-public class UsuariosController {
+public class UsuariosController extends SessionController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
     @GetMapping("/formularioUsuarios")
-    public String mostrarFormularioYListado(@RequestParam(required = false) Long id, Model model) {
+    public String mostrarFormularioYListado(@RequestParam(required = false) Long id, Model model, HttpSession session) {
+
+        if (!sesionAdminOAsesor(session, model)) {
+        return "redirect:/login";
+    }
+
         UsuarioModel usuario;
         if (id != null) {
             usuario = usuarioRepository.findById(id)
