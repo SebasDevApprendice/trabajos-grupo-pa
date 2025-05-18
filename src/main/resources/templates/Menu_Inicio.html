@@ -52,45 +52,22 @@
 
         <!-- Productos -->
         <div class="products">
-            <table>
-                <thead class="product-card">
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Talla</th>
-                        <th>Carrito</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="productoDTO : ${productos}">
-                        <td>
-                            <img class="product-img"
-                                th:src="${productoDTO.producto.imagenUrl != null ? productoDTO.producto.imagenUrl : '/img/default.png'}"
-                                alt="Imagen del Producto">
-                        </td>
-                        <td th:text="${productoDTO.producto.nombre}">Nombre</td>
-                        <td th:text="'$' + ${productoDTO.producto.precio}">$0.00</td>
-                        <td>
-                            <form th:action="@{/agregarAlCarrito}" method="post">
-                                <input type="hidden" name="nombre" th:value="${productoDTO.producto.nombre}" />
-                                <select name="talla" required>
-                                    <option value="" disabled selected>Selecciona una talla</option>
-                                    <option th:each="t : ${productoDTO.tallasDisponibles}"
-                                            th:value="${t}" th:text="${t}"></option>
-                                </select>
-                        </td>
-                        <td>
-                                <label for="cantidad">Cantidad:</label>
-                                <input type="number" name="cantidad" min="1" value="1" required />
-                                <button type="submit" class="btn">Agregar al Carrito</button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="catalogo-grid">
+                <div class="producto" th:each="producto : ${productos}">
+                    <img th:src="${producto.imagenUrl}" alt="Imagen del Producto">
+                    <p th:text="${producto.nombre}">Nombre</p>
+                    <p th:text="${producto.precio}">$0.00</p>
+                    <p th:text="${producto.talla}">Talla</p>
+                    <a th:href="@{'/agregarCarrito?productoId=' + ${producto.codigo}}" class="btn">Agregar al
+                        Carrito</a>
+                </div>
+            </div>
+
+
         </div>
+
     </div>
 
 </body>
+
 </html>
