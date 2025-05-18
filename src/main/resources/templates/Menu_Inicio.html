@@ -52,18 +52,31 @@
 
         <!-- Productos -->
         <div class="products">
-            <div class="catalogo-grid">
-                <div class="producto" th:each="producto : ${productos}">
-                    <img th:src="${producto.imagenUrl}" alt="Imagen del Producto">
-                    <p th:text="${producto.nombre}">Nombre</p>
-                    <p th:text="${producto.precio}">$0.00</p>
-                    <p th:text="${producto.talla}">Talla</p>
-                    <a th:href="@{'/agregarCarrito?productoId=' + ${producto.codigo}}" class="btn">Agregar al
-                        Carrito</a>
+            <div th:each="productoDTO : ${productos}" class="product-card">
+                <img class="product-img"
+                    th:src="${productoDTO.producto.imagenUrl != null ? productoDTO.producto.imagenUrl : '/img/default.png'}"
+                    alt="Imagen del Producto">
+
+                <div class="product-info">
+                    <h3 th:text="${productoDTO.producto.nombre}">Nombre del producto</h3>
+                    <p th:text="'$' + ${productoDTO.producto.precio}">$0.00</p>
+
+                    <form th:action="@{/agregarAlCarrito}" method="post">
+                        <input type="hidden" name="nombre" th:value="${productoDTO.producto.nombre}" />
+
+                        <select name="talla" required>
+                            <option value="" disabled selected>Selecciona una talla</option>
+                            <option th:each="t : ${productoDTO.tallasDisponibles}" th:value="${t}" th:text="${t}">
+                            </option>
+                        </select>
+
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" name="cantidad" min="1" value="1" required />
+
+                        <button type="submit" class="btn" style="background-color: #f2637b;">Agregar al Carrito</button>
+                    </form>
                 </div>
             </div>
-
-
         </div>
 
     </div>

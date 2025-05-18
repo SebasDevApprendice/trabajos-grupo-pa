@@ -105,23 +105,16 @@ header {
     border-radius: 12px;
 }
 
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-}
-
 .product-card {
     background-color: white;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
     transition: transform 0.2s ease;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-card:hover {
@@ -137,13 +130,57 @@ header {
 
 .product-info {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .product-info h3 {
-    margin: 0.5rem 0;
+    margin: 0;
     color: #333;
+    font-size: 1.1rem;
 }
 
+.product-info p {
+    margin: 0;
+    font-weight: bold;
+    color: #f2637b;
+    font-size: 1rem;
+}
+
+.product-info form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.product-info select,
+.product-info input[type="number"] {
+    padding: 0.4rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.product-info label {
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.btn {
+    background-color: #f2637b;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e3526c;
+}
 
 
 /* ---------- RESPONSIVE ---------- */
