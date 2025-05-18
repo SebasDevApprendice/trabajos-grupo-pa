@@ -4,6 +4,7 @@ import com.example.demo.Model.CarritoModel;
 import com.example.demo.Model.CarritoProductoModel;
 import com.example.demo.Model.ClientesModel;
 import com.example.demo.Model.ProductoModel;
+import com.example.demo.Model.TallaEnum;
 import com.example.demo.Repository.CarritoProductoRepository;
 import com.example.demo.Repository.CarritoRepository;
 import com.example.demo.Repository.ClientesRepository;
@@ -65,22 +66,20 @@ public String verCarrito(HttpSession session, Model model) {
     return "carrito";
 }
 
-    @PostMapping("/agregar/{productoCod}")
-public String agregarProductoAlCarrito(@PathVariable Long productoCod,
-        @RequestParam int cantidad,
-        HttpSession session) {
+    @PostMapping("/agregarAlCarrito")
+public String agregarAlCarrito(@RequestParam String nombre,
+                               @RequestParam TallaEnum talla,
+                               @RequestParam int cantidad,
+                               HttpSession session) {
     ClientesModel cliente = (ClientesModel) session.getAttribute("clienteLogueado");
 
     if (cliente == null) {
         return "redirect:/login";
     }
 
-    Optional<ProductoModel> optionalProducto = productoRepository.findById(productoCod);
-    if (optionalProducto.isEmpty()) {
-        return "redirect:/agregarCarrito";
-    }
-
-    ProductoModel producto = optionalProducto.get();
+    // Buscar el producto exacto por nombre y talla
+    ProductoModel producto = productoRepository.findByNombreAndTalla(nombre, talla)
+            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
     if (cantidad > producto.getCantidad()) {
         return "redirect:/carrito?error=No+haysuficiente+stock+para+agregar";
@@ -95,15 +94,18 @@ public String agregarProductoAlCarrito(@PathVariable Long productoCod,
         clientesRepository.save(cliente);
     }
 
+    // ✅ Verificamos si ya hay ese producto con esa talla
     boolean existe = false;
     for (CarritoProductoModel item : carrito.getCarritoProductos()) {
-        if (item.getProducto().getCodigo().equals(productoCod)) {
-            // Sumar la cantidad existente a la que se desea agregar.
+        if (item.getProducto().getNombre().equals(nombre) &&
+            item.getProducto().getTalla() == talla) {
+            
             int nuevaCantidad = item.getCantidad() + cantidad;
-            // Verificar si la cantidad total excede el stock
+
             if (nuevaCantidad > producto.getCantidad()) {
                 return "redirect:/carrito?error=No+haysuficiente+stock+para+agregar";
             }
+
             item.setCantidad(nuevaCantidad);
             carritoProductoRepository.save(item);
             existe = true;
@@ -111,6 +113,7 @@ public String agregarProductoAlCarrito(@PathVariable Long productoCod,
         }
     }
 
+    // Si no existía esa combinación nombre+talla, se agrega como nuevo ítem
     if (!existe) {
         CarritoProductoModel nuevoItem = new CarritoProductoModel(carrito, producto, cantidad);
         carrito.getCarritoProductos().add(nuevoItem);
@@ -148,21 +151,35 @@ public String actualizarCantidad(@PathVariable Long productoId,
 
 
 
-    @PostMapping("/eliminarC/{productoId}")
-    public String eliminarProductoDelCarrito(@PathVariable Long productoId, HttpSession session) {
-        ClientesModel cliente = (ClientesModel) session.getAttribute("clienteLogueado");
-        if (cliente == null)
-            return "redirect:/login";
+@PostMapping("/eliminarC")
+public String eliminarProductoDelCarrito(@RequestParam String nombre,
+                                         @RequestParam TallaEnum talla,
+                                         HttpSession session) {
+    ClientesModel cliente = (ClientesModel) session.getAttribute("clienteLogueado");
+    if (cliente == null)
+        return "redirect:/login";
 
-        CarritoModel carrito = cliente.getCarrito();
-        if (carrito == null)
-            return "redirect:/carrito";
-
-        carrito.getCarritoProductos().removeIf(item -> item.getProducto().getCodigo().equals(productoId));
-        carritoRepository.save(carrito);
-
+    CarritoModel carrito = cliente.getCarrito();
+    if (carrito == null)
         return "redirect:/carrito";
+
+    // Buscar el producto en el carrito
+    CarritoProductoModel itemEliminar = null;
+    for (CarritoProductoModel item : carrito.getCarritoProductos()) {
+        if (item.getProducto().getNombre().equals(nombre) && item.getProducto().getTalla().equals(talla)) {
+            itemEliminar = item;
+            break;
+        }
     }
+
+    if (itemEliminar != null) {
+        carrito.getCarritoProductos().remove(itemEliminar);           // quitar de la lista
+        carritoProductoRepository.delete(itemEliminar);               // borrar de BD
+        carritoRepository.save(carrito);                               // guardar carrito actualizado (opcional)
+    }
+
+    return "redirect:/carrito";
+}
 
     
 }

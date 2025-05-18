@@ -31,12 +31,11 @@
                     <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
                 </li>
 
-
                 <li class="nav-item" th:if="${clienteLogueado != null}">
                     <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </li>
-
             </ul>
+        </nav>
     </header>
 
     <div class="container">
@@ -53,23 +52,22 @@
 
         <!-- Productos -->
         <div class="products">
-
-
-<div class="catalogo-grid">
-    <div class="producto" th:each="producto : ${productos}">
-        <img th:src="${producto.imagenUrl}" alt="Imagen del Producto">
-        <p th:text="${producto.nombre}">Nombre</p>
-        <p th:text="${producto.precio}">$0.00</p>
-        <p th:text="${producto.talla}">Talla</p>
-        <a th:href="@{'/agregarCarrito?productoId=' + ${producto.codigo}}" class="btn">Agregar al Carrito</a>
-    </div>
-</div>
-
-
+            <div class="catalogo-grid">
+                <div class="producto" th:each="producto : ${productos}">
+                    <img th:src="${producto.imagenUrl}" alt="Imagen del Producto">
+                    <p th:text="${producto.nombre}">Nombre</p>
+                    <p th:text="${producto.precio}">$0.00</p>
+                    <p th:text="${producto.talla}">Talla</p>
+                    <a th:href="@{'/agregarCarrito?productoId=' + ${producto.codigo}}" class="btn">Agregar al
+                        Carrito</a>
+                </div>
             </div>
 
+
         </div>
+
     </div>
+
 </body>
 
 </html>
