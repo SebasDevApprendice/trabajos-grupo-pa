@@ -31,12 +31,11 @@
                     <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
                 </li>
 
-
                 <li class="nav-item" th:if="${cliente != null}">
                     <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </li>
-
             </ul>
+        </nav>
     </header>
 
     <div class="container">
@@ -54,34 +53,44 @@
         <!-- Productos -->
         <div class="products">
             <table>
-    <thead class="product-card">
-        <tr class = "">
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Talla</th>
-            <th>Carrito</th>
-        </tr>
-    </thead>
+                <thead class="product-card">
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Talla</th>
+                        <th>Carrito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="productoDTO : ${productos}">
+                        <td>
+                            <img class="product-img"
+                                th:src="${productoDTO.producto.imagenUrl != null ? productoDTO.producto.imagenUrl : '/img/default.png'}"
+                                alt="Imagen del Producto">
+                        </td>
+                        <td th:text="${productoDTO.producto.nombre}">Nombre</td>
+                        <td th:text="'$' + ${productoDTO.producto.precio}">$0.00</td>
+                        <td>
+                            <form th:action="@{/agregarAlCarrito}" method="post">
+                                <input type="hidden" name="nombre" th:value="${productoDTO.producto.nombre}" />
+                                <select name="talla" required>
+                                    <option value="" disabled selected>Selecciona una talla</option>
+                                    <option th:each="t : ${productoDTO.tallasDisponibles}"
+                                            th:value="${t}" th:text="${t}"></option>
+                                </select>
+                        </td>
+                        <td>
+                                <label for="cantidad">Cantidad:</label>
+                                <input type="number" name="cantidad" min="1" value="1" required />
+                                <button type="submit" class="btn">Agregar al Carrito</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <tbody>
-        <tr th:each="producto : ${productos}">
-            <td>
-                <img class="product-img" th:src="${producto.imagenUrl != null ? producto.imagenUrl : '/img/default.png'}" alt="Imagen del Producto">
-            </td>
-            <td th:text="${producto.nombre}">Nombre</td>
-            <td th:text="${producto.precio}">$0.00</td>
-            <td th:text="${producto.talla}">Talla</td>
-            <td>
-                <form th:action="@{'/agregar/' + ${producto.codigo}}" method="post">
-                    <label for="cantidad">Cantidad:</label>
-                    <input type="number" name="cantidad" min="1" value="1" required />
-                    <button type="submit" class="btn">Agregar al Carrito</button>
-                </form>
-            </td>
-        </tr>
-    </tbody>
-</table>
 </body>
-
 </html>

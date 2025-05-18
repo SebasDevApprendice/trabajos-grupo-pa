@@ -1,14 +1,19 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DTO.ProductoDto;
 import com.example.demo.Model.ClientesModel;
 import com.example.demo.Model.ProductoModel;
+import com.example.demo.Model.TallaEnum;
 import com.example.demo.Repository.ClientesRepository;
 import com.example.demo.Repository.ProductoRepository;
 
 import jakarta.servlet.http.HttpSession;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,9 +63,29 @@ public class ClientesController extends SessionController {
 
     @GetMapping("/Menu_Inicio")
     public String menuInicio(HttpSession session, Model model) {
+        // Agregar cliente al modelo (de SessionController)
         agregarClienteAModel(session, model);
-        List<ProductoModel> productos = productoRepository.findAll(); // << Aquí usas el repo directo
-        model.addAttribute("productos", productos);
+
+        // Obtener productos y agruparlos para el catálogo
+        List<ProductoModel> todos = productoRepository.findAll();
+
+        Map<String, List<ProductoModel>> agrupados = todos.stream()
+            .collect(Collectors.groupingBy(ProductoModel::getNombre));
+
+        List<ProductoDto> productosCatalogo = new ArrayList<>();
+
+        for (Map.Entry<String, List<ProductoModel>> entry : agrupados.entrySet()) {
+            ProductoModel base = entry.getValue().get(0);
+            List<TallaEnum> tallas = entry.getValue().stream()
+                .map(ProductoModel::getTalla)
+                .distinct()
+                .collect(Collectors.toList());
+
+            productosCatalogo.add(new ProductoDto(base, tallas));
+        }
+
+        model.addAttribute("productos", productosCatalogo);
+
         return "Menu_Inicio";
     }
 
