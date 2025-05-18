@@ -35,36 +35,49 @@ public class LoginController {
         model.addAttribute("usuarioLogin", new UsuarioLoginDto());
         return "login"; 
     }
+    
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("usuarioLogin") UsuarioLoginDto usuarioLogin, Model model, HttpSession session) {
-        String email = usuarioLogin.getEmail();
-        String contrasena = usuarioLogin.getContrasena();
+public String login(@ModelAttribute("usuarioLogin") UsuarioLoginDto usuarioLogin, Model model,
+                    HttpSession session) {
+    String email = usuarioLogin.getEmail();
+    String contrasena = usuarioLogin.getContrasena();
 
-        ClientesModel cliente = clientesRepository.findByEmail(email);
-        if (cliente != null && cliente.getContrasena().equals(cliente.getContrasena())) {
-            session.setAttribute("clienteLogueado", cliente);
-            return "redirect:/Menu_Inicio"; 
-        }
-
-        
-        UsuarioModel usuario = UsuarioRepository.findByEmail(email);
-        if (usuario != null && usuario.getContrasena().equals(contrasena)) {
-            TipoUsuario tipo = usuario.getUsrTipo();
-            if (tipo == TipoUsuario.Administrador) {
-                return "vistaAdmin";
-            } else if (tipo == TipoUsuario.Asesor) {
-                return "vistaAdmin";
-            }
-        }
-
-        
-        if (ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(contrasena)) {
-            return "vistaAdmin"; 
-        }
-
-        model.addAttribute("error", "Credenciales incorrectas");
-        return "login";
+    // Primero revisamos si es admin hardcodeado
+    if (ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(contrasena)) {
+        ClientesModel admin = new ClientesModel();
+        admin.setNombre("Admin");
+        admin.setEmail(ADMIN_EMAIL);
+        admin.setRol("ADMIN");
+        session.setAttribute("clienteLogueado", admin);
+        return "vistaAdmin";
     }
+
+    // Luego clientes normales
+    ClientesModel cliente = clientesRepository.findByEmail(email);
+    if (cliente != null && cliente.getContrasena().equals(contrasena)) {
+        session.setAttribute("clienteLogueado", cliente);
+        if ("ADMIN".equals(cliente.getRol())) {
+            return "vistaAdmin";
+        } else {
+            return "redirect:/Menu_Inicio";
+        }
+    }
+
+    // Luego usuarios
+    UsuarioModel usuario = UsuarioRepository.findByEmail(email);
+    if (usuario != null && usuario.getContrasena().equals(contrasena)) {
+        TipoUsuario tipo = usuario.getUsrTipo();
+        if (tipo == TipoUsuario.Administrador) {
+            return "vistaAdmin";
+        } else if (tipo == TipoUsuario.Asesor) {
+            return "vistaAdmin";
+        }
+    }
+
+    model.addAttribute("error", "Credenciales incorrectas");
+    return "login";
+}
+
 }
 

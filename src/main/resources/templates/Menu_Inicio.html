@@ -23,16 +23,16 @@
             <ul class="nav-ul">
                 <li class="nav-item"><a href="/Menu_Inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
                 <li class="nav-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
-
-                <li class="nav-item" th:if="${cliente != null and cliente.rol == 'ADMIN'}">
-                    <a href="/vistaAdmin"><i class="fa-solid fa-tools"></i> Administrar</a>
+                
+                <li th:if="${clienteLogueado != null and clienteLogueado.rol == 'ADMIN'}">
+                    <a href="/vistaAdmin">Administrar</a>
                 </li>
-                <li class="nav-item" th:if="${cliente == null}">
+                <li class="nav-item" th:if="${clienteLogueado == null}">
                     <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
                 </li>
 
 
-                <li class="nav-item" th:if="${cliente != null}">
+                <li class="nav-item" th:if="${clienteLogueado != null}">
                     <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </li>
 
@@ -53,17 +53,23 @@
 
         <!-- Productos -->
         <div class="products">
-            <table>
-    <thead class="product-card">
-        <tr class = "">
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Talla</th>
-            <th>Carrito</th>
-        </tr>
-    </thead>
-</table>
+
+
+<div class="catalogo-grid">
+    <div class="producto" th:each="producto : ${productos}">
+        <img th:src="${producto.imagenUrl}" alt="Imagen del Producto">
+        <p th:text="${producto.nombre}">Nombre</p>
+        <p th:text="${producto.precio}">$0.00</p>
+        <p th:text="${producto.talla}">Talla</p>
+        <a th:href="@{'/agregarCarrito?productoId=' + ${producto.codigo}}" class="btn">Agregar al Carrito</a>
+    </div>
+</div>
+
+
+            </div>
+
+        </div>
+    </div>
 </body>
 
 </html>
