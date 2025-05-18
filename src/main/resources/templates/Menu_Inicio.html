@@ -23,15 +23,15 @@
             <ul class="nav-ul">
                 <li class="nav-item"><a href="/Menu_Inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
                 <li class="nav-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
-                
-                <li th:if="${clienteLogueado != null and clienteLogueado.rol == 'ADMIN'}">
-                    <a href="/vistaAdmin">Administrar</a>
+
+                <li class="nav-item" th:if="${cliente != null and cliente.rol == 'ADMIN'}">
+                    <a href="/vistaAdmin"><i class="fa-solid fa-tools"></i> Administrar</a>
                 </li>
-                <li class="nav-item" th:if="${clienteLogueado == null}">
+                <li class="nav-item" th:if="${cliente == null}">
                     <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
                 </li>
 
-                <li class="nav-item" th:if="${clienteLogueado != null}">
+                <li class="nav-item" th:if="${cliente != null}">
                     <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </li>
             </ul>
@@ -52,18 +52,38 @@
 
         <!-- Productos -->
         <div class="products">
-            <div class="catalogo-grid">
-                <div class="producto" th:each="producto : ${productos}">
-                    <img th:src="${producto.imagenUrl}" alt="Imagen del Producto">
-                    <p th:text="${producto.nombre}">Nombre</p>
-                    <p th:text="${producto.precio}">$0.00</p>
-                    <p th:text="${producto.talla}">Talla</p>
-                    <a th:href="@{'/agregarCarrito?productoId=' + ${producto.codigo}}" class="btn">Agregar al
-                        Carrito</a>
+            <div th:each="productoDTO : ${productos}" class="product-card">
+                <div class="product-image">
+                    <img class="product-img"
+                        th:src="${productoDTO.producto.imagenUrl != null ? productoDTO.producto.imagenUrl : '/img/default.png'}"
+                        alt="Imagen del Producto">
+                </div>
+
+                <div class="product-details">
+                    <p class="product-name" th:text="${productoDTO.producto.nombre}">Nombre</p>
+                    <p class="product-price" th:text="'$' + ${productoDTO.producto.precio}">$0.00</p>
+
+                    <form th:action="@{/agregarAlCarrito}" method="post" class="product-form">
+                        <input type="hidden" name="nombre" th:value="${productoDTO.producto.nombre}" />
+
+                        <div class="product-option">
+                            <label for="talla">Talla:</label>
+                            <select name="talla" required>
+                                <option value="" disabled selected>Selecciona una talla</option>
+                                <option th:each="t : ${productoDTO.tallasDisponibles}" th:value="${t}" th:text="${t}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="product-quantity">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" name="cantidad" min="1" value="1" required />
+                        </div>
+
+                        <button type="submit" class="btn">Agregar al Carrito</button>
+                    </form>
                 </div>
             </div>
-
-
         </div>
 
     </div>
