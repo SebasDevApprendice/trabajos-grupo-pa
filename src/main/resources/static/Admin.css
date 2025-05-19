@@ -78,12 +78,10 @@ header {
     min-height: calc(100vh - 80px);
 }
 
-/* Sidebar */
 .sidebar {
     width: 150px;
     background: linear-gradient(to bottom, #ffffff, #f48fb1);
     min-height: calc(100vh - 80px);
-    /* resta la altura del header si lo tienes */
     padding-top: 20px;
 }
 
@@ -162,27 +160,26 @@ header {
     color: #666;
 }
 
-/* Colores distintos por tipo */
+
 .card.ingresos {
     border-left-color: #81c784;
 }
 
-/* verde */
 .card.egresos {
     border-left-color: #e57373;
 }
 
-/* rojo */
+
 .card.metas {
     border-left-color: #64b5f6;
 }
 
-/* azul */
+
 .card.usuarios {
     border-left-color: #ba68c8;
 }
 
-/* morado */
+
 
 /*---------- MEDIA QUERIES(HEADER) ----------*/
 @container header (min-width: 600px) {

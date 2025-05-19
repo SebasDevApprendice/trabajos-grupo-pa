@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 <header>
     <div class="logo">
@@ -17,149 +19,75 @@
     <nav class="header_nav">
         <ul class="nav-ul">
             <li class="nav-item"><a href="/Menu_Inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
-            
+
             <li class="nav-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
-            
-                <li class="nav-item" 
-                    th:if="(${cliente != null and cliente.rol == 'ADMIN'}) or (${usuarioLogueado != null and usuarioLogueado.usrTipo == T(com.example.demo.Model.TipoUsuario).Administrador})">
-                    <a href="/vistaAdmin"><i class="fa-solid fa-tools"></i> Administrar</a>
-                </li>
 
-                <li class="nav-item" 
-                    th:if="${cliente == null and usuarioLogueado == null}">
-                    <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
-                </li>
+            <li class="nav-item"
+                th:if="(${cliente != null and cliente.rol == 'ADMIN'}) or (${usuarioLogueado != null and usuarioLogueado.usrTipo == T(com.example.demo.Model.TipoUsuario).Administrador})">
+                <a href="/vistaAdmin"><i class="fa-solid fa-tools"></i> Administrar</a>
+            </li>
 
-                <li class="nav-item" 
-                    th:if="${cliente != null or usuarioLogueado != null}">
-                    <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
-                </li>
+            <li class="nav-item" th:if="${cliente == null and usuarioLogueado == null}">
+                <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
+            </li>
+
+            <li class="nav-item" th:if="${cliente != null or usuarioLogueado != null}">
+                <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            </li>
 
         </ul>
     </nav>
 </header>
+
 <body>
 
-    <div class="Todo">
-        <div class="galery_grid">
-            <div class="grid_item">
-                <img class="maniqui-img"src= "img/ImgCarrito/ManiquiMujer.png" alt="Maniquí">
-            </div>
-                        <div class="grid_item">
-                        <img src="img/ImgCarrito/blusa1.webp" alt="Producto" class="producto-img" />
-                            <div class="detalles">
-                                <div class="info-izquierda">
-                                <span class="nombre">Blusa con estampado floral</span>
-                                <span class="precio">25$</span>
-                                </div>
+<div class="Todo">
+    <div class="galery_grid">
 
-                                <div class="info-derecha">
-                                <div class="atributo"><strong>Talla:</strong> M</div>
-                                <div class="atributo"><strong>Color:</strong> rosa</div>
-                                <div class="atributo"><strong>Cantidad:</strong> 1</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid_item">
-                        <img src="img/ImgCarrito/shopping.webp" alt="Producto" class="producto-img" />
-
-                        <div class="detalles">
-                            <div class="info-izquierda">
-                            <span class="nombre">Blusa con estampado floral</span>
-                            <span class="precio">25$</span>
-                            </div>
-
-                            <div class="info-derecha">
-                            <div class="atributo"><strong>Talla:</strong> M</div>
-                            <div class="atributo"><strong>Color:</strong> rosa</div>
-                            <div class="atributo"><strong>Cantidad:</strong> 1</div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="grid_item">
-                        <img src="img/ImgCarrito/blusa1.webp" alt="Producto" class="producto-img" />
-
-                        <div class="detalles">
-                            <div class="info-izquierda">
-                            <span class="nombre">Blusa con estampado floral</span>
-                            <span class="precio">25$</span>
-                            </div>
-
-                            <div class="info-derecha">
-                            <div class="atributo"><strong>Talla:</strong> M</div>
-                            <div class="atributo"><strong>Color:</strong> rosa</div>
-                            <div class="atributo"><strong>Cantidad:</strong> 1</div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="grid_item">
-                        <img src="img/ImgCarrito/blusa1.webp" alt="Producto" class="producto-img" />
-
-                        <div class="detalles">
-                            <div class="info-izquierda">
-                            <span class="nombre">Blusa con estampado floral</span>
-                            <span class="precio">25$</span>
-                            </div>
-
-                            <div class="info-derecha">
-                            <div class="atributo"><strong>Talla:</strong> M</div>
-                            <div class="atributo"><strong>Color:</strong> rosa</div>
-                            <div class="atributo"><strong>Cantidad:</strong> 1</div>
-                            </div>
-                        </div>
-                        </div>
-                                <div class="grid_item">
-                    <div class="resumen">
-                        <h3>Resumen del pedido</h3>
-                        <p>2 productos por un costo de $45</p>
-                        <p>Envío gratis</p>
-                        <p><strong>Total: $45</strong></p>
-                        <div class="acciones">
-                            <button class="pagar"><a href="factura"><i class="fas fa-credit-card"></i> Proceder al pago</a></button>
-                            <button class="regresar"><a href="Menu_Inicio">Volver a comprar</a></button>
-                        </div>
-                    </div>
-                </div>
+        <div class="grid_item">
+            <img class="maniqui-img" src="img/ImgCarrito/ManiquiMujer.png" alt="Maniquí">
         </div>
 
+        <div class="grid_item" th:if="${carritoProductos != null}">
             <h1>Tu Carrito</h1>
+            <div class="card-content">
 
-    <div th:if="${carritoProductos != null}">
-        <table>
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Total</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item : ${carritoProductos}">
-                    <td th:text="${item.producto.nombre}">Nombre</td>
-                    <td th:text="${item.producto.precio}">$0.00</td>
-                    <td>
-                        <form th:action="@{'/actualizar/' + ${item.producto.codigo}}" method="post">
+                <div class="car_grid">
+                    <div class="header">Producto</div>
+                    <div class="header">Precio</div>
+                    <div class="header">Cantidad</div>
+                    <div class="header">Total</div>
+                    <div class="header">Acciones</div>
+
+
+                    <th:block th:each="item : ${carritoProductos}">
+                        <div class="cell" th:text="${item.producto.nombre}">Nombre</div>
+                        <div class="cell" th:text="${item.producto.precio}">$0.00</div>
+                        <div class="cell">
                             <input type="number" name="cantidad" th:value="${item.cantidad}" min="1" required>
-                            <button type="submit">Actualizar</button>
-                        </form>
-                    </td>
-                    <td th:text="${item.producto.precio * item.cantidad}">$0.00</td>
-                    <td>
-                        <form th:action="@{/eliminarC}" method="post">
-                            <input type="hidden" name="nombre" th:value="${item.producto.nombre}" />
-                            <input type="hidden" name="talla" th:value="${item.producto.talla}" />
-                            <button type="submit">Eliminar</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </div>
+                        <div class="cell" th:text="${item.producto.precio * item.cantidad}">$0.00</div>
+                        <div class="cell">
+                            <form th:action="@{/eliminarC}" method="post">
+                                <input type="hidden" name="nombre" th:value="${item.producto.nombre}" />
+                                <input type="hidden" name="talla" th:value="${item.producto.talla}" />
+                                <button type="submit">Eliminar</button>
+                            </form>
+                                <form th:action="@{'/actualizar/' + ${item.producto.codigo}}" method="post">
+                                
+                                <button type="submit">Actualizar</button>
+                            </form>
+                        </div>
+                    </th:block>
+                </div>
 
-        <h2>Total: <span th:text="${carrito.costoCarrito}">$0.00</span></h2>
-        <button onclick="window.location.href='/Menu_Inicio'">Seguir comprando</button>
+                <h2>Total: <span th:text="${carrito.costoCarrito}">$0.00</span></h2>
+                <button onclick="window.location.href='/Menu_Inicio'">Seguir comprando</button>
+            </div>
+        </div>
     </div>
+</div>
 
 </body>
+
 </html>
