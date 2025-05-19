@@ -38,49 +38,29 @@
 
             </ul>
     </header>
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Factura - Ebisu</title>
-    <link rel="stylesheet" href="factura.css">
-</head>
-<body>
+
     <div class="factura-container">
-        <!-- Formulario de pago -->
-        <div class="formulario-pago">
-            <h2>Datos de Pago</h2>
-            <form>
-                <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" name="nombre" required>
-
-                <label for="tarjeta">Número de tarjeta</label>
-                <input type="text" id="tarjeta" name="tarjeta" placeholder="1234 5678 9012 3456" required>
-
-                <label for="fecha">Fecha de vencimiento</label>
-                <input type="month" id="fecha" name="fecha" required>
-
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" maxlength="3" required>
-
-                <button type="submit">Pagar</button>
-                <button type="button" onclick="window.history.back()">Volver</button>
-            </form>
-        </div>
-
-        <!-- Detalles de la factura -->
         <div class="detalles-factura">
             <h3>Resumen de la Compra</h3>
             <ul>
-                <li>Producto 1 - $40.000</li>
-                <li>Producto 2 - $25.000</li>
-                <li>Producto 3 - $35.000</li>
+                <li th:each="item : ${carrito.carritoProductos}">
+                    <img th:src="${item.producto.imagenUrl}" alt="Imagen del producto"/>
+                    <span th:text="${item.producto.nombre}">Producto</span>
+                    <span> - $<span th:text="${item.producto.precio}">0</span></span>
+                    <span> x <span th:text="${item.cantidad}">1</span> </span>
+                    <span>= $<span th:text="${item.producto.precio * item.cantidad}">0</span></span>
+                </li>
             </ul>
-            <p><strong>Total:</strong> $100.000</p>
+            <p><strong>Total:</strong> $<span th:text="${carrito.costoCarrito}">0</span></p>
+            <p th:if="${error != null}" th:text="${error}"></p>
+        </div>
+
+        <div class="acciones">
+            <form th:action="@{/procesar-venta}" method="post">
+                <button type="submit">Confirmar compra</button>
+            </form>
+            <button type="button" onclick="window.history.back()">Volver</button>
         </div>
     </div>
 </body>
 </html>
-
-    

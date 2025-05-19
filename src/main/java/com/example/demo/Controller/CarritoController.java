@@ -102,7 +102,6 @@ public class CarritoController extends SessionController {
             clientesRepository.save(cliente);
         }
 
-        // ✅ Verificamos si ya hay ese producto con esa talla
         boolean existe = false;
         for (CarritoProductoModel item : carrito.getCarritoProductos()) {
             if (item.getProducto().getNombre().equals(nombre) &&
@@ -121,7 +120,6 @@ public class CarritoController extends SessionController {
             }
         }
 
-        // Si no existía esa combinación nombre+talla, se agrega como nuevo ítem
         if (!existe) {
             CarritoProductoModel nuevoItem = new CarritoProductoModel(carrito, producto, cantidad);
             carrito.getCarritoProductos().add(nuevoItem);
