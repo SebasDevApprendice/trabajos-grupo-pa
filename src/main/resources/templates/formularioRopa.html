@@ -19,16 +19,14 @@
             <ul class="nav-ul">
                 <li class="nav-item"><a href="/Menu_Inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
                 <li class="nav-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
-                
+
                 <li class="nav-item"><a href="/vistaAdmin"><i class="fa-solid fa-cart-shopping"></i> Administrar</a>
 
-                <li class="nav-item" 
-                    th:if="${cliente == null and usuarioLogueado == null}">
+                <li class="nav-item" th:if="${cliente == null and usuarioLogueado == null}">
                     <a href="/login"><i class="fa-solid fa-circle-user"></i> Login</a>
                 </li>
 
-                <li class="nav-item" 
-                    th:if="${cliente != null or usuarioLogueado != null}">
+                <li class="nav-item" th:if="${cliente != null or usuarioLogueado != null}">
                     <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </li>
             </ul>
@@ -44,6 +42,13 @@
                         <span>Usuarios</span></a></li>
                 <li class="sidebar-item"><a href="/formularioRopa"><i class="fa-solid fa-shirt"></i>
                         <span>Ropa</span></a></li>
+                <li class="sidebar-item">
+                    <a href="/reponer">
+                        <i class="fa-solid fa-receipt"></i>
+                        <span>reponer
+                            Inventario</span>
+                    </a>
+                </li>
                 <li class="sidebar-item"><a href="/finanzas"><i class="fa-solid fa-coins"></i> <span>Finanzas</span></a>
                 </li>
                 <li class="sidebar-item"><a href="/pedidos"><i class="fa-solid fa-receipt"></i> <span>Pedidos</span></a>
@@ -54,7 +59,6 @@
         </aside>
 
         <main class="dashboard">
-
             <section class="formulario">
                 <h2>Agregar Producto</h2>
                 <form th:action="${producto.codigo != null} ? @{/editar} : @{/agregar}" th:object="${producto}"
@@ -103,7 +107,8 @@
                     <tbody>
                         <tr th:each="producto : ${productos}">
                             <td>
-                                <img class="product-img" th:src="${producto.imagenUrl != null ? producto.imagenUrl : '/img/default.png'}"
+                                <img class="product-img"
+                                    th:src="${producto.imagenUrl != null ? producto.imagenUrl : '/img/default.png'}"
                                     alt="Imagen del Producto">
                             </td>
                             <td th:text="${producto.nombre}">Nombre</td>
