@@ -30,9 +30,12 @@ public class ProductoController extends SessionController {
             return "redirect:/login";
         }
 
-        ProductoModel producto = (codigo != null)
-                ? productoRepository.findById(codigo).orElse(new ProductoModel())
-                : new ProductoModel();
+        ProductoModel producto;
+        if (codigo != null) {
+            producto = productoRepository.findById(codigo).orElse(new ProductoModel());
+        } else {
+            producto = new ProductoModel();
+        }
 
         model.addAttribute("producto", producto);
         model.addAttribute("productos", productoRepository.findAll());
