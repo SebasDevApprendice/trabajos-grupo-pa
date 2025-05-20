@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
 import com.example.demo.Model.TipoUsuario;
 import com.example.demo.Model.UsuarioModel;
 import com.example.demo.Repository.UsuarioRepository;
@@ -44,9 +45,27 @@ public class UsuariosController extends SessionController {
     }
 
     @PostMapping("/agregarUsuario")
-    public String agregarUsuario(@ModelAttribute UsuarioModel usuario) {
-        usuarioRepository.save(usuario);
-        return "redirect:/formularioUsuarios";
+    public String agregarUsuario(@ModelAttribute UsuarioModel usuario, Model model, HttpSession session) {
+
+        if (!sesionAdminOAsesor(session, model)) {
+        return "redirect:/login";
+    }
+    
+    UsuarioModel existente = usuarioRepository.findByEmail(usuario.getEmail());
+
+    
+    if (existente != null && existente.getId() != usuario.getId()) {
+        model.addAttribute("errorEmail", "⚠️ Ya existe un usuario registrado con ese correo.");
+        model.addAttribute("usuario", usuario); // mantiene los datos llenos
+        model.addAttribute("usuarios", usuarioRepository.findAll());
+        model.addAttribute("tiposUsuario", TipoUsuario.values());
+        model.addAttribute("fechaMaxima", LocalDate.now().minusDays(1).toString());
+        return "formularioUsuarios";
+    }
+
+    
+    usuarioRepository.save(usuario);
+    return "redirect:/formularioUsuarios";
     }
 
     @GetMapping("/formularioEdit2/{id}")

@@ -56,7 +56,10 @@
 
             <section class="formulario">
                 <h2>Agregar Usuario</h2>
-                <form th:action="${usuario.id != null} ? @{/editarUsuario} : @{/agregarUsuario}" th:object="${usuario}" method="post">
+                <div th:if="${errorEmail}" style="color: red; font-weight: bold;">
+                    <p th:text="${errorEmail}"></p>
+                </div>
+                <form th:action="@{/agregarUsuario}" th:object="${usuario}" method="post">
                     <label for="id">Documento:</label>
                     <input type="number" min = "1" step = "1" th:field="*{id}" required />
 
@@ -67,7 +70,7 @@
                     <input class="form_style" type="date" th:field="*{fecha_nac}" th:attr="max=${fechaMaxima}" required>
 
                     <label for="email">Email:</label>
-                    <input type="text" id="email" th:field="*{email}" required />
+                    <input type="email" id="email" th:field="*{email}" required />
 
                     <label for="contrasena">Contraseña:</label>
                     <input type="text" id="Contrasena" th:field="*{contrasena}" required />
@@ -77,7 +80,6 @@
                         <option value="" disabled selected>Seleccione un tipo</option>
                         <option th:each="tipo : ${tiposUsuario}" th:value="${tipo}" th:text="${tipo}"></option>
                     </select>
-
                     <button type="submit">Agregar Usuario</button>
                 </form>
             </section>

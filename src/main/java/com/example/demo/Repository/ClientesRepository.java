@@ -8,4 +8,5 @@ import com.example.demo.Model.ClientesModel;
 @Repository
 public interface ClientesRepository extends JpaRepository<ClientesModel, Long> {
     ClientesModel findByEmail(String email);
+    boolean existsByEmail(String email);
 }

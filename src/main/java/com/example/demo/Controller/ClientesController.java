@@ -34,21 +34,29 @@ public class ClientesController extends SessionController {
     public String registrarCliente(@ModelAttribute("cliente") ClientesModel cliente, Model model) {
         
         LocalDate fechaNacimiento = cliente.getFecha_nac().toLocalDate();
-        if (!fechaNacimiento.isBefore(LocalDate.now())) {
+
+    if (!fechaNacimiento.isBefore(LocalDate.now())) {
         model.addAttribute("error", "La fecha de nacimiento no puede ser hoy ni futura.");
         model.addAttribute("fechaMaxima", LocalDate.now().minusDays(1).toString());
         return "registroCl";
     }
 
-        cliente.setRol("CLIENTE");
-
-        double saldo = Math.random() * 250000 + 50000;
-        saldo = Math.round(saldo * 100.0) / 100.0; 
-
-        cliente.setSaldo(saldo);
-        clienteRepository.save(cliente);
-        return "redirect:/login";
+    if (clienteRepository.existsByEmail(cliente.getEmail())) {
+        model.addAttribute("error", "El correo ya está registrado.");
+        model.addAttribute("fechaMaxima", LocalDate.now().minusDays(1).toString());
+        return "registroCl";
     }
+
+    cliente.setRol("CLIENTE");
+
+    double saldo = Math.random() * 250000 + 50000;
+    saldo = Math.round(saldo * 100.0) / 100.0;
+
+    cliente.setSaldo(saldo);
+    clienteRepository.save(cliente);
+    
+    return "redirect:/login";
+}
 
 
     @GetMapping("/registroCl")
