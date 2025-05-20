@@ -4,10 +4,12 @@ import com.example.demo.Model.CarritoModel;
 import com.example.demo.Model.CarritoProductoModel;
 import com.example.demo.Model.ClientesModel;
 import com.example.demo.Model.DetalleVentaModel;
+import com.example.demo.Model.ProductoModel;
 import com.example.demo.Model.VentaModel;
 import com.example.demo.Repository.VentaRepository;
 import com.example.demo.Repository.CarritoRepository;
 import com.example.demo.Repository.ClientesRepository;
+import com.example.demo.Repository.ProductoRepository;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +29,12 @@ public class VentaController extends SessionController {
 
     @Autowired
     private ClientesRepository clientesRepository;
+    
+    @Autowired
+    private ProductoRepository productoRepository;  // Repositorio para actualizar el stock
 
     @GetMapping("/factura")
     public String mostrarFactura(Model model, HttpSession session) {
-
         ClientesModel cliente = (ClientesModel) session.getAttribute("clienteLogueado");
         if (cliente != null) {
             CarritoModel carrito = cliente.getCarrito();
@@ -46,7 +50,6 @@ public class VentaController extends SessionController {
 
     @PostMapping("/procesar-venta")
     public String procesarVenta(HttpSession session, Model model) {
-
         ClientesModel cliente = (ClientesModel) session.getAttribute("clienteLogueado");
         if (cliente == null) {
             return "redirect:/login";
@@ -60,15 +63,27 @@ public class VentaController extends SessionController {
         venta.setCliente(cliente);
         venta.setFechaVenta(new java.sql.Date(System.currentTimeMillis()));
         List<DetalleVentaModel> detalles = new ArrayList<>();
-
         double totalVenta = 0;
+
         for (CarritoProductoModel item : carrito.getCarritoProductos()) {
-            double subtotal = item.getProducto().getPrecio() * item.getCantidad();
+            ProductoModel producto = item.getProducto();
+            int stockActual = producto.getCantidad();
+            int cantidadVendida = item.getCantidad();
+
+            if (stockActual < cantidadVendida) {
+                model.addAttribute("error", "Stock insuficiente para el producto: " + producto.getNombre());
+                model.addAttribute("carrito", carrito);
+                return "factura";
+            }
+            
+            producto.setCantidad(stockActual - cantidadVendida);
+            productoRepository.save(producto);
+            double subtotal = producto.getPrecio() * cantidadVendida;
             totalVenta += subtotal;
             DetalleVentaModel detalle = new DetalleVentaModel();
             detalle.setVenta(venta);
-            detalle.setProducto(item.getProducto());
-            detalle.setCantidad(item.getCantidad());
+            detalle.setProducto(producto);
+            detalle.setCantidad(cantidadVendida);
             detalle.setSubtotal(subtotal);
             detalles.add(detalle);
         }
