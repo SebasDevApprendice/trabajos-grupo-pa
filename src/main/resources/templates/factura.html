@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login || Ebisu</title>
+    <title>Detalles Previos || Ebisu</title>
     <link rel="stylesheet" href="/Main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@
             <h3>Resumen de la Compra</h3>
             <ul>
                 <li th:each="item : ${carrito.carritoProductos}">
-                    <img th:src="${item.producto.imagenUrl}" alt="Imagen del producto"/>
+                    <img class="factura-img-producto" th:src="${item.producto.imagenUrl}" alt="Imagen del producto"/>
                     <span th:text="${item.producto.nombre}">Producto</span>
                     <span> - $<span th:text="${item.producto.precio}">0</span></span>
                     <span> x <span th:text="${item.cantidad}">1</span> </span>

@@ -64,19 +64,22 @@
                         <div class="cell" th:text="${item.producto.nombre}">Nombre</div>
                         <div class="cell" th:text="${item.producto.precio}">$0.00</div>
                         <div class="cell">
-                            <input type="number" name="cantidad" th:value="${item.cantidad}" min="1" required>
                         </div>
                         <div class="cell" th:text="${item.producto.precio * item.cantidad}">$0.00</div>
                         <div class="cell">
+
                             <form th:action="@{/eliminarC}" method="post">
-                                <input type="hidden" name="nombre" th:value="${item.producto.nombre}" />
-                                <input type="hidden" name="talla" th:value="${item.producto.talla}" />
+                                    <input type="hidden" name="nombre" th:value="${item.producto.nombre}" />
+                                    <input type="hidden" name="talla" th:value="${item.producto.talla}" />
                                 <button type="submit">Eliminar</button>
-                            </form>
-                                <form th:action="@{'/actualizar/' + ${item.producto.codigo}}" method="post">
                                 
+                            </form>
+
+                            <form th:action="@{'/actualizar/' + ${item.producto.codigo}}" method="post">
+                                <input type="number" name="cantidad" th:value="${item.cantidad}" min="1" required>
                                 <button type="submit">Actualizar</button>
                             </form>
+                            
                         </div>
                     </th:block>
                 </div>

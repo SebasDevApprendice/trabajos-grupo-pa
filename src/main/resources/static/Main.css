@@ -208,78 +208,209 @@ header {
         padding: 10px;
     }
 }
+
+
+
+/*---------- Facttura ----------*/
+
+.factura-img-producto{
+    max-width: 200px;
+}
+
 .factura-container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+    padding: 40px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-    gap: 2rem;
-}
-
-.formulario-pago {
-    flex: 2;
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
-
-.formulario-pago h2 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: #f2637b;
-}
-
-.formulario-pago label {
-    display: block;
-    margin-top: 1rem;
-}
-
-.formulario-pago input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.formulario-pago button {
-    margin-top: 1.5rem;
-    padding: 0.7rem 1.2rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #f2637b;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-right: 0.5rem;
-    transition: background-color 0.3s;
-}
-
-.formulario-pago button:hover {
-    background-color: #e3526c;
-}
-
-.detalles-factura {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    flex-direction: column;
+    gap: 35px;
 }
 
 .detalles-factura h3 {
-    margin-top: 0;
-    color: #f2637b;
+    font-size: 26px;
+    font-weight: 800;
+    color: #d13a6f;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .detalles-factura ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .detalles-factura li {
-    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+    padding: 25px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.factura-img-producto {
+    width: 120px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.detalles-factura li span {
+    white-space: nowrap;
+}
+
+.detalles-factura p {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    color: #000;
+}
+
+.acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.acciones button {
+    background-color: #d13a6f;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.acciones button:hover {
+    background-color: #b32f5a;
+    transform: scale(1.03);
+}
+
+.acciones button[type="button"] {
+    background-color: #888;
+}
+
+.acciones button[type="button"]:hover {
+    background-color: #666;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .factura-container {
+        padding: 20px;
+    }
+
+    .detalles-factura li {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+    }
+
+    .acciones {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .acciones button {
+        width: 100%;
+    }
+}
+
+/*---------- FACTURACIOMN ----------*/
+
+.invoice-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+h1 {
+    text-align: center;
+    color: #c2185b;
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
+h2 {
+    color: #444;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+.cliente-info p,
+.venta-info p {
+    margin: 6px 0;
+}
+
+.detalles-venta table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+.detalles-venta th,
+.detalles-venta td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.detalles-venta th {
+    background-color: #f1f1f1;
+    font-weight: 600;
+}
+
+.detalles-venta img {
+    width: 80px;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.footer-factura {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.footer-factura p {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.footer-factura button {
+    background-color: #c2185b;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.footer-factura button:hover {
+    background-color: #a3154a;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #aaa;
+    font-size: 14px;
 }
