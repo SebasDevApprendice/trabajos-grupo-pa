@@ -42,26 +42,22 @@ public class LoginController {
         String email = usuarioLogin.getEmail();
         String contrasena = usuarioLogin.getContrasena();
 
-        // Verificar cliente
         ClientesModel cliente = clientesRepository.findByEmail(email);
         if (cliente != null && cliente.getContrasena().equals(contrasena)) {
             session.setAttribute("clienteLogueado", cliente);
             return "redirect:/Menu_Inicio";
         }
 
-        // Verificar usuario
         UsuarioModel usuario = usuarioRepository.findByEmail(email);
         if (usuario != null && usuario.getContrasena().equals(contrasena)) {
             session.setAttribute("usuarioLogueado", usuario);
 
-            // Redirigir según tipo
             TipoUsuario tipo = usuario.getUsrTipo();
             if (tipo == TipoUsuario.Administrador || tipo == TipoUsuario.Asesor) {
                 return "redirect:/vistaAdmin";
             }
         }
 
-        // Verificar admin quemado
         if (ADMIN_EMAIL.equals(email) && ADMIN_PASSWORD.equals(contrasena)) {
         UsuarioModel admin = new UsuarioModel();
         admin.setEmail(ADMIN_EMAIL);

@@ -73,7 +73,6 @@ public class ClientesController extends SessionController {
         return "redirect:/login";
         }
 
-        // Obtener productos y agruparlos para el catálogo
         List<ProductoModel> todos = productoRepository.findAll();
 
         Map<String, List<ProductoModel>> agrupados = todos.stream()
