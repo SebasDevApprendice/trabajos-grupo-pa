@@ -62,7 +62,6 @@ public class CarritoController extends SessionController {
         List<CarritoProductoModel> productosEnCarrito = carrito.getCarritoProductos();
 
         float total = 0;
-        // Multiplica el precio por la cantidad correspondiente de cada producto
         for (CarritoProductoModel item : productosEnCarrito) {
             total += item.getProducto().getPrecio() * item.getCantidad();
         }
@@ -85,7 +84,6 @@ public class CarritoController extends SessionController {
             return "redirect:/login";
         }
 
-        // Buscar el producto exacto por nombre y talla
         ProductoModel producto = productoRepository.findByNombreAndTalla(nombre, talla)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
@@ -167,7 +165,6 @@ public class CarritoController extends SessionController {
         if (carrito == null)
             return "redirect:/carrito";
 
-        // Buscar el producto en el carrito
         CarritoProductoModel itemEliminar = null;
         for (CarritoProductoModel item : carrito.getCarritoProductos()) {
             if (item.getProducto().getNombre().equals(nombre) && item.getProducto().getTalla().equals(talla)) {
@@ -177,9 +174,9 @@ public class CarritoController extends SessionController {
         }
 
         if (itemEliminar != null) {
-            carrito.getCarritoProductos().remove(itemEliminar); // quitar de la lista
-            carritoProductoRepository.delete(itemEliminar); // borrar de BD
-            carritoRepository.save(carrito); // guardar carrito actualizado (opcional)
+            carrito.getCarritoProductos().remove(itemEliminar);
+            carritoProductoRepository.delete(itemEliminar); 
+            carritoRepository.save(carrito);
         }
 
         return "redirect:/carrito";

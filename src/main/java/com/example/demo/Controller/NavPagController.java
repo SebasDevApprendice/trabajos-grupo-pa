@@ -15,7 +15,6 @@ public class NavPagController {
         return "registroCl";
     }
 
-
     @RequestMapping("/login")
     public String login() {
         return "login";

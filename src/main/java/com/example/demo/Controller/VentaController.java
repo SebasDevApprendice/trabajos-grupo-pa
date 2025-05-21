@@ -31,7 +31,7 @@ public class VentaController extends SessionController {
     private ClientesRepository clientesRepository;
     
     @Autowired
-    private ProductoRepository productoRepository;  // Repositorio para actualizar el stock
+    private ProductoRepository productoRepository; 
 
     @GetMapping("/factura")
     public String mostrarFactura(Model model, HttpSession session) {

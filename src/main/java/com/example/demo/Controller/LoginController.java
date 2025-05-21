@@ -80,7 +80,6 @@ public class LoginController {
     public String vistaAdmin(HttpSession session, Model model) {
         UsuarioModel usuario = (UsuarioModel) session.getAttribute("usuarioLogueado");
 
-    // Verifica si no hay sesión o si no es Admin ni Asesor
     if (usuario == null || 
         (!usuario.getUsrTipo().name().equals("Administrador") && 
         !usuario.getUsrTipo().name().equals("Asesor"))) {
